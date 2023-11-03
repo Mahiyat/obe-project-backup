@@ -39,7 +39,7 @@ export default function SubmitRequest() {
           }}
           gutterBottom
         >
-          Explain your problemgi in below and submit request
+          Explain your problem below and submit request
         </Typography>
         <Box display={"flex"} paddingTop={5} gutterBottom>
           <TextField
@@ -47,16 +47,17 @@ export default function SubmitRequest() {
             label="Message"
             multiline
             rows={10}
-            defaultValue="Default Value"
+            placeholder="Write you message..."
             size="Normal"
             fullWidth
-            inputProps={{style: {fontSize: 30}}}
           />
         </Box>
         <Box
           paddingTop={2}
+          display={"flex"}
+          flexDirection={"row-reverse"}
         >
-          <Button variant="contained" color="success">Submit Request</Button>
+          <Button variant="contained" color="primary">Submit Request</Button>
         </Box>
       </Box>
     </Box>
