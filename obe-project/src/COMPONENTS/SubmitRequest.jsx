@@ -57,7 +57,14 @@ export default function SubmitRequest() {
           display={"flex"}
           flexDirection={"row-reverse"}
         >
-          <Button variant="contained" color="primary">Submit Request</Button>
+          <Button 
+            variant="contained" 
+            color="primary"
+            onClick={()=>{
+              alert("Clicked");
+            }}
+          >Submit Request</Button>
+
         </Box>
       </Box>
     </Box>
