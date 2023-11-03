@@ -1,5 +1,6 @@
-import { Box, Typography } from '@mui/material'
-import React from 'react'
+import { Box, Button, Typography } from "@mui/material";
+import React from "react";
+import TextField from "@mui/material/TextField";
 
 export default function SubmitRequest() {
   return (
@@ -30,7 +31,34 @@ export default function SubmitRequest() {
         >
           Submit Request
         </Typography>
+
+        <Typography
+          variant="h6"
+          sx={{
+            textAlign: "left",
+          }}
+          gutterBottom
+        >
+          Explain your problemgi in below and submit request
+        </Typography>
+        <Box display={"flex"} paddingTop={5} gutterBottom>
+          <TextField
+            id="outlined-multiline-static"
+            label="Message"
+            multiline
+            rows={10}
+            defaultValue="Default Value"
+            size="Normal"
+            fullWidth
+            inputProps={{style: {fontSize: 30}}}
+          />
+        </Box>
+        <Box
+          paddingTop={2}
+        >
+          <Button variant="contained" color="success">Submit Request</Button>
+        </Box>
       </Box>
     </Box>
-  )
+  );
 }
