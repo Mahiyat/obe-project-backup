@@ -1,13 +1,15 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 
-export default function SubmitMarksButton() {
+export default function SubmitMarksButton({ type }) {
   return (
     <Box
       sx={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "flex-end",
+        justifyContent: "flex-start",
+        paddingY: "16px",
+        gap: "16px",
       }}
     >
       <Button
@@ -17,7 +19,7 @@ export default function SubmitMarksButton() {
           alert("Marks Submitted");
         }}
       >
-        Submit Marks
+        {`Submit ${type} Marks`}
       </Button>
       <Typography
         variant="body2"

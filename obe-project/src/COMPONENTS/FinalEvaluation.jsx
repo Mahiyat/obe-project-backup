@@ -1,20 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Box, Typography } from "@mui/material";
+import { Box, Card, Typography } from "@mui/material";
 
 import SubmitMarksButton from "./SubmitMarksButton";
 
 export default function FinalEvaluation() {
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        paddingY: "16px",
+        gap: "16px",
+      }}
+    >
       <Typography variant="h5" sx={{ textAlign: "left" }} gutterBottom>
         Final Evaluation
       </Typography>
-      <Box sx={{ width: "85%" }}>
+      <Box>
         <Typography variant="body1" sx={{ textAlign: "left" }} gutterBottom>
           For details click <Link to="/final-evaluation-sheet">here</Link>
         </Typography>
-        <SubmitMarksButton />
+        <SubmitMarksButton type="Final" />
       </Box>
     </Box>
   );

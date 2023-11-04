@@ -45,7 +45,7 @@ const rows = [
 
 export default function TutorialInfoTable() {
   return (
-    <Box sx={{ width: "60%" }}>
+    <Box sx={{ maxWidth: "750px" }}>
       <DataGrid
         rows={rows}
         columns={columns}

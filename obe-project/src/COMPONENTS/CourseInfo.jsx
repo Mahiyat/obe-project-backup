@@ -11,27 +11,23 @@ export default function CourseInfo() {
 
   return (
     <Box
+      component="main"
       sx={{
-        height: 400,
         display: "flex",
-        flexGrow: "1",
+        flexDirection: "column",
+        gap: "24px",
+        flexGrow: 1,
+        bgcolor: "background.default",
+        p: 3,
+        position: "relative",
       }}
     >
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          bgcolor: "background.default",
-          p: 3,
-          position: "relative",
-          top: "25%",
-        }}
-      >
+      <Box>
         <Typography
           variant="h3"
           sx={{
             textAlign: "left",
-            textDecoration: "underline rgb(81, 42, 255)",
+            textDecoration: "underline #3d5afe",
           }}
           gutterBottom
         >
@@ -42,9 +38,9 @@ export default function CourseInfo() {
           courseName={location.state.courseName}
           title={location.state.title}
         />
-        <IncourseEvaluation />
-        <FinalEvaluation />
       </Box>
+      <IncourseEvaluation />
+      <FinalEvaluation />
     </Box>
   );
 }

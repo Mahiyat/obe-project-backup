@@ -1,14 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
+import { Box } from "@mui/material";
 
 export default function Navbuttons() {
   const navigate = useNavigate();
 
   return (
-    <div
+    <Box
       className="navButton"
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "16px",
+      }}
     >
       <Button
         sx={{
@@ -28,7 +35,6 @@ export default function Navbuttons() {
       >
         Dashboard
       </Button>
-      <br />
       <Button
         sx={{
           background: "#C9CEFF",
@@ -47,7 +53,6 @@ export default function Navbuttons() {
       >
         View Courses
       </Button>
-      <br />
       <Button
         sx={{
           background: "#C9CEFF",
@@ -66,7 +71,6 @@ export default function Navbuttons() {
       >
         Submit Request
       </Button>
-      <br />
       <Button
         sx={{
           background: "#C9CEFF",
@@ -88,21 +92,21 @@ export default function Navbuttons() {
       <br />
       <Button
         sx={{
-          background: "red",
+          background: "#e53935",
           color: "white",
           fontWeight: "bold",
           borderRadius: 5,
           width: 100,
           ":hover": {
-            background: "red",
+            background: "#e53935",
             color: "white",
             boxShadow: 10,
           },
         }}
-        variant="contained"
+        variant="outlined"
       >
         Log Out
       </Button>
-    </div>
+    </Box>
   );
 }

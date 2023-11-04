@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Card, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
 import ViewCoursesRowActions from "./ViewCoursesRowActions";
@@ -63,74 +63,80 @@ const rows = [
 export default function ViewCourses() {
   return (
     <Box
+      component="main"
       sx={{
-        height: 400,
         display: "flex",
-        flexGrow: "1",
+        flexDirection: "column",
+        gap: "24px",
+        flexGrow: 1,
+        bgcolor: "background.default",
+        p: 3,
+        position: "relative",
       }}
     >
-      <Box
-        component="main"
+      <Typography
+        variant="h3"
         sx={{
-          flexGrow: 1,
-          bgcolor: "background.default",
-          p: 3,
-          position: "relative",
-          top: "25%",
+          textAlign: "left",
+          textDecoration: "underline #3d5afe",
+        }}
+        gutterBottom
+      >
+        Courses
+      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          paddingY: "16px",
+          gap: "16px",
         }}
       >
-        <Typography
-          variant="h3"
-          sx={{
-            textAlign: "left",
-            textDecoration: "underline rgb(81, 42, 255)",
-          }}
-          gutterBottom
-        >
-          Courses
+        <Typography variant="h5" gutterBottom>
+          Active Courses
         </Typography>
-        <Box sx={{height: "80%"}}>
-          <Typography variant="h5" sx={{ textAlign: "left" }} gutterBottom>
-            Active Courses
-          </Typography>
-          <Box sx={{margin: "auto", width: "70%"}}>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              initialState={{
-                pagination: {
-                  paginationModel: {
-                    pageSize: 3,
-                  },
-                },
-              }}
-              pageSizeOptions={[3]}
-              // checkboxSelection
-              disableRowSelectionOnClick
-            />
-          </Box>
-        </Box>
-        <Box>
-          <Typography variant="h5" sx={{ textAlign: "left" }} gutterBottom>
-            Completed Courses
-          </Typography>
-          <Box sx={{margin: "auto", width: "70%"}}>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              initialState={{
-                pagination: {
-                  paginationModel: {
-                    pageSize: 3,
-                  },
-                },
-              }}
-              pageSizeOptions={[3]}
-              // checkboxSelection
-              disableRowSelectionOnClick
-            />
-          </Box>
-        </Box>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 3,
+              },
+            },
+          }}
+          pageSizeOptions={[3]}
+          // checkboxSelection
+          disableRowSelectionOnClick
+        />
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          paddingY: "16px",
+          gap: "16px",
+        }}
+      >
+        <Typography variant="h5" gutterBottom>
+          Completed Courses
+        </Typography>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 3,
+              },
+            },
+          }}
+          pageSizeOptions={[3]}
+          // checkboxSelection
+          disableRowSelectionOnClick
+        />
       </Box>
     </Box>
   );

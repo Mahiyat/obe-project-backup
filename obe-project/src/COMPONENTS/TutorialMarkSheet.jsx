@@ -53,81 +53,78 @@ export default function TutorialMarkSheet() {
 
   return (
     <Box
+      component="main"
       sx={{
-        height: 400,
         display: "flex",
-        flexGrow: "1",
+        flexDirection: "column",
+        gap: "24px",
+        flexGrow: 1,
+        bgcolor: "background.default",
+        p: 3,
+        position: "relative",
       }}
     >
-      <Box
-        component="main"
+      <Typography
+        variant="h3"
         sx={{
-          flexGrow: 1,
-          bgcolor: "background.default",
-          p: 3,
+          textAlign: "left",
+          textDecoration: "underline #3d5afe",
+        }}
+        gutterBottom
+      >
+        {location.state.title} Marks
+      </Typography>
+      <Box sx={{ margin: "auto", width: "60%" }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 100,
+              },
+            },
+          }}
+          pageSizeOptions={[100]}
+          // checkboxSelection
+          disableRowSelectionOnClick
+        />
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "flex-end",
           position: "relative",
-          top: "25%",
+          paddingY: "16px",
+          gap: "16px",
         }}
       >
-        <Typography
-          variant="h3"
+        <Button
+          variant="contained"
           sx={{
-            textAlign: "left",
-            textDecoration: "underline rgb(81, 42, 255)",
+            position: "absolute",
+            right: "10%",
+            bottom: "0",
           }}
-          gutterBottom
+          onClick={() => navigate(-1)}
         >
-          {location.state.title} Marks
-        </Typography>
-        <Box sx={{ margin: "auto", width: "60%" }}>
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 100,
-                },
-              },
-            }}
-            pageSizeOptions={[100]}
-            // checkboxSelection
-            disableRowSelectionOnClick
-          />
-        </Box>
-        <Box
+          Back
+        </Button>
+        <Button
+          variant="contained"
           sx={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "flex-end",
-            position: "relative",
-            top: "20%",
+            position: "absolute",
+            right: "3%",
+            bottom: "0",
+          }}
+          onClick={() => {
+            alert("Marks Saved");
           }}
         >
-          <Button
-            variant="contained"
-            sx={{
-              position: "absolute",
-              right: "10%",
-              bottom: "0",
-            }}
-            onClick={() => navigate(-1)}
-          >
-            Back
-          </Button>
-          <Button
-            variant="contained"
-            sx={{
-              position: "absolute",
-              right: "3%",
-              bottom: "0",
-            }}
-            onClick={() => {alert("Marks Saved")}}
-          >
-            Save
-          </Button>
-        </Box>
+          Save
+        </Button>
       </Box>
     </Box>
   );

@@ -21,7 +21,7 @@ export default function NavBar() {
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
-            backgroundColor: "rgb(81, 42, 255)",
+            backgroundColor: "#3d5afe",
           },
         }}
         variant="permanent"
