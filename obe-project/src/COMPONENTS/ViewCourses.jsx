@@ -1,7 +1,8 @@
 import React from "react";
-import ViewCoursesRowActions from "./ViewCoursesRowActions";
 import { Box, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+
+import ViewCoursesRowActions from "./ViewCoursesRowActions";
 
 const columns = [
   {

@@ -1,5 +1,6 @@
-import { AppBar, Box, CssBaseline, Drawer } from "@mui/material";
 import React from "react";
+import { AppBar, Box, CssBaseline, Drawer } from "@mui/material";
+
 import Facultyinfo from "./Facultyinfo";
 import Navbuttons from "./Navbuttons";
 

@@ -61,7 +61,7 @@ export default function SubmitRequest() {
             variant="contained" 
             color="primary"
             onClick={()=>{
-              alert("Clicked");
+              alert("Message Sent");
             }}
           >Submit Request</Button>
 
