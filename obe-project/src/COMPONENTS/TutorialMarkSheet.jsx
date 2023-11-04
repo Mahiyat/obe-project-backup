@@ -102,13 +102,12 @@ export default function TutorialMarkSheet() {
             alignItems: "center",
             justifyContent: "flex-end",
             position: "relative",
-            top: "70%",
+            top: "20%",
           }}
         >
           <Button
             variant="contained"
             sx={{
-              backgroundColor: "#ffeb3b",
               position: "absolute",
               right: "10%",
               bottom: "0",
@@ -120,11 +119,11 @@ export default function TutorialMarkSheet() {
           <Button
             variant="contained"
             sx={{
-              backgroundColor: "#4caf50",
               position: "absolute",
               right: "3%",
               bottom: "0",
             }}
+            onClick={() => {alert("Marks Saved")}}
           >
             Save
           </Button>

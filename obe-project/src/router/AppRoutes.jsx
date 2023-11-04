@@ -8,6 +8,7 @@ import TutorialMarkSheet from "../COMPONENTS/TutorialMarkSheet";
 import ViewCourses from "../COMPONENTS/ViewCourses";
 import SubmitRequest from "../COMPONENTS/SubmitRequest";
 import ResultStatistics from "../COMPONENTS/ResultStatistics";
+import FinalEvaluationSheet from "../COMPONENTS/FinalEvaluationSheet";
 
 export default function AppRoutes() {
   const routes = createBrowserRouter([
@@ -26,16 +27,20 @@ export default function AppRoutes() {
         },
         {
           path: "view-courses",
-          element: <ViewCourses />
+          element: <ViewCourses />,
         },
         {
           path: "submit-request",
-          element: <SubmitRequest />
+          element: <SubmitRequest />,
         },
         {
           path: "result-statistics",
-          element: <ResultStatistics />
-        }
+          element: <ResultStatistics />,
+        },
+        {
+          path: "final-evaluation-sheet",
+          element: <FinalEvaluationSheet />,
+        },
       ],
     },
   ]);
