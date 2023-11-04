@@ -20,67 +20,60 @@ export default function ResultStatistics() {
 
   return (
     <Box
+      component="main"
       sx={{
-        height: 400,
         display: "flex",
-        flexGrow: "1",
+        flexDirection: "column",
+        gap: "24px",
+        flexGrow: 1,
+        bgcolor: "background.default",
+        p: 3,
+        position: "relative",
       }}
     >
-      <Box
-        component="main"
+      <Typography
+        variant="h3"
         sx={{
-          flexGrow: 1,
-          bgcolor: "background.default",
-          p: 3,
-          position: "relative",
-          top: "25%",
+          textAlign: "left",
+          textDecoration: "underline #3d5afe",
         }}
+        gutterBottom
       >
-        <Typography
-          variant="h3"
+        Result Statistics
+      </Typography>
+      <Box>
+        <Box
           sx={{
-            textAlign: "left",
-            textDecoration: "underline rgb(81, 42, 255)",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            alignItems: "center",
           }}
-          gutterBottom
         >
-          Result Statistics
-        </Typography>
-        <Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "flex-start",
-              alignItems: "center",
-            }}
-          >
-            <Typography variant="body1" sx={{ textAlign: "left" }} gutterBottom>
-              <strong>Select Type: </strong>
-            </Typography>
-            <Box sx={{ minWidth: 200 }}>
-              <FormControl fullWidth>
-                <InputLabel id="type-select-label">Chart Type</InputLabel>
-                <Select
-                  labelId="type-select-label"
-                  id="type-select"
-                  value={type}
-                  label="Type"
-                  onChange={handleTypeChange}
-                >
-                  <MenuItem value={"Single Course"}>Single Course</MenuItem>
-                  <MenuItem value={"All Active Courses"}>All Active Courses</MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
+          <Box sx={{ minWidth: 200 }}>
+            <FormControl fullWidth>
+              <InputLabel id="type-select-label">Select Type</InputLabel>
+              <Select
+                labelId="type-select-label"
+                id="type-select"
+                value={type}
+                label="Select Type"
+                onChange={handleTypeChange}
+              >
+                <MenuItem value={"Single Course"}>Single Course</MenuItem>
+                <MenuItem value={"All Active Courses"}>
+                  All Active Courses
+                </MenuItem>
+              </Select>
+            </FormControl>
           </Box>
         </Box>
-        {type === "All Active Courses" ? (
-          <AllCourseGraph />
-        ) : type === "Single Course" ? (
-          <SingleCourseMenu />
-        ) : null}
       </Box>
+      {type === "All Active Courses" ? (
+        <AllCourseGraph />
+      ) : type === "Single Course" ? (
+        <SingleCourseMenu />
+      ) : null}
     </Box>
   );
 }

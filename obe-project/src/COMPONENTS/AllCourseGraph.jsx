@@ -59,7 +59,7 @@ const series = [
 
 export default function AllCourseGraph() {
   return (
-    <Box sx={{ position: "relative", top: "60%" }}>
+    <Box sx={{ position: "relative" }}>
       <Box
         sx={{
           display: "flex",

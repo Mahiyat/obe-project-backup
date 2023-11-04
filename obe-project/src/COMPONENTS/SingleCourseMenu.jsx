@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+} from "@mui/material";
 
 import SingleCourseGraph from "./SingleCourseGraph";
 
@@ -16,7 +23,7 @@ export default function SingleCourseMenu() {
   };
 
   return (
-    <Box sx={{ position: "relative", top: "10%" }}>
+    <Box sx={{ position: "relative" }}>
       <Box sx={{ display: "flex", flexDirection: "row" }}>
         <Box
           sx={{
@@ -27,9 +34,6 @@ export default function SingleCourseMenu() {
             width: "50%",
           }}
         >
-          <Typography variant="body1" sx={{ textAlign: "left" }} gutterBottom>
-            <strong>Select Course: </strong>
-          </Typography>
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
               <InputLabel id="course-select-label">Course</InputLabel>
@@ -54,12 +58,9 @@ export default function SingleCourseMenu() {
             alignItems: "center",
           }}
         >
-          <Typography variant="body1" sx={{ textAlign: "left" }} gutterBottom>
-            <strong>Select Exam: </strong>
-          </Typography>
           <Box sx={{ minWidth: 250 }}>
             <FormControl fullWidth>
-              <InputLabel id="exam-select-label">Exam</InputLabel>
+              <InputLabel id="exam-select-label">Exam Title</InputLabel>
               <Select
                 labelId="exam-select-label"
                 id="exam-select"

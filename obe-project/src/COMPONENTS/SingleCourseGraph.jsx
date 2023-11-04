@@ -25,7 +25,7 @@ const series = [
 
 export default function SingleCourseGraph({course, exam}) {
   return (
-    <Box sx={{ position: "relative", top: "80%" }}>
+    <Box sx={{ position: "relative" }}>
       <Box
         sx={{
           display: "flex",
