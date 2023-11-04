@@ -56,7 +56,7 @@ export default function SingleCourseGraph({course, exam}) {
             position="bottom"
             axisId="courseOutcome"
           />
-          <ChartsYAxis label="Result" position="left" axisId="general" />
+          <ChartsYAxis label="Attainment" position="left" axisId="general" />
           <ChartsTooltip />
           {/* <ChartsYAxis label="Threshold" position="right" axisId="threshold" /> */}
         </ChartContainer>
