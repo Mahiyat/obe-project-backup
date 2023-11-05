@@ -8,17 +8,19 @@ const columns = [
   {
     field: "id",
     headerName: "Sl No",
-    width: 150,
+    width: 250,
   },
   {
     field: "title",
     headerName: "Exam Name",
-    width: 250,
+    width: 600,
   },
   {
     field: "actions",
     headerName: "Details",
-    width: 200,
+    headerAlign: "right",
+    align: "right",
+    width: 150,
     renderCell: (params) => (
       <TutorialMarksViewActions title={params.value.title} />
     ),
@@ -45,7 +47,7 @@ const rows = [
 
 export default function TutorialInfoTable() {
   return (
-    <Box sx={{ maxWidth: "750px" }}>
+    <Box>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -57,7 +59,6 @@ export default function TutorialInfoTable() {
           },
         }}
         pageSizeOptions={[3]}
-        checkboxSelection
         disableRowSelectionOnClick
       />
     </Box>

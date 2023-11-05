@@ -12,12 +12,13 @@ export default function IncourseEvaluation() {
         alignItems: "flex-start",
         paddingY: "16px",
         gap: "16px",
+        width: "100%",
       }}
     >
       <Typography variant="h5" sx={{ textAlign: "left" }} gutterBottom>
         Incourse Evaluation
       </Typography>
-      <Box>
+      <Box sx={{ width: "100%" }}>
         <TutorialInfoTable />
         <SubmitMarksButton type="Incourse" />
       </Box>

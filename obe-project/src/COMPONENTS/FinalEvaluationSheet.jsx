@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 const columns = [
   { field: "id", headerName: "Roll No.", width: 150 },
-  { field: "registration", headerName: "Registration No.", width: 150 },
-  { field: "name", headerName: "Name", width: 250 },
+  { field: "registration", headerName: "Registration No.", width: 300 },
+  { field: "name", headerName: "Name", width: 350 },
   {
     field: "co1",
     headerName: "CO1",
@@ -195,53 +195,33 @@ export default function FinalEvaluationSheet() {
         Final Evaluation Sheet
       </Typography>
 
-      <Box
-        display={"flex"}
-        justifyContent={"center"}
-        alignContent={"center"}
-        paddingTop={5}
-      >
-        <div style={{ height: "100%", width: "75%" }}>
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: { page: 0, pageSize: 80 },
-              },
-            }}
-          />
-        </div>
+      <Box>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 80 },
+            },
+          }}
+        />
       </Box>
       <Box
         sx={{
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "flex-end",
+          justifyContent: "flex-start",
           position: "relative",
           paddingY: "16px",
           gap: "16px",
         }}
       >
-        <Button
-          variant="contained"
-          sx={{
-            position: "absolute",
-            right: "10%",
-            bottom: "0",
-          }}
-          onClick={() => navigate(-1)}
-        >
+        <Button variant="contained" onClick={() => navigate(-1)}>
           Back
         </Button>
         <Button
           variant="contained"
-          sx={{
-            position: "absolute",
-            right: "3%",
-            bottom: "0",
-          }}
           onClick={() => {
             alert("Marks Saved");
           }}

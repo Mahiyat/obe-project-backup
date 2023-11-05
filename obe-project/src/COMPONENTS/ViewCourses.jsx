@@ -8,9 +8,9 @@ const columns = [
   {
     field: "id",
     headerName: "Sl No",
-    width: 150,
+    width: 250,
   },
-  { field: "courseId", headerName: "Course ID", width: 90 },
+  { field: "courseId", headerName: "Course ID", width: 250 },
   {
     field: "courseName",
     headerName: "Course Name",
@@ -24,7 +24,7 @@ const columns = [
   {
     field: "actions",
     headerName: "Details",
-    width: 200,
+    width: 350,
     renderCell: (params) => (
       <ViewCoursesRowActions
         courseId={params.value.courseId}
