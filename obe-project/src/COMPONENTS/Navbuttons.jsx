@@ -89,8 +89,7 @@ export default function Navbuttons() {
       >
         Result Statistics
       </Button>
-      <br />
-      <Button
+      {/* <Button
         sx={{
           background: "#e53935",
           color: "white",
@@ -106,7 +105,7 @@ export default function Navbuttons() {
         variant="outlined"
       >
         Log Out
-      </Button>
+      </Button> */}
     </Box>
   );
 }

@@ -61,15 +61,15 @@ export default function ResultStatistics() {
                 onChange={handleTypeChange}
               >
                 <MenuItem value={"Single Course"}>Single Course</MenuItem>
-                <MenuItem value={"All Active Courses"}>
-                  All Active Courses
+                <MenuItem value={"All Completed Courses"}>
+                  All Completed Courses
                 </MenuItem>
               </Select>
             </FormControl>
           </Box>
         </Box>
       </Box>
-      {type === "All Active Courses" ? (
+      {type === "All Completed Courses" ? (
         <AllCourseGraph />
       ) : type === "Single Course" ? (
         <SingleCourseMenu />

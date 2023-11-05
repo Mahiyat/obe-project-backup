@@ -24,7 +24,7 @@ export default function SubmitRequest() {
         }}
         gutterBottom
       >
-        Submit Request
+        Edit Access Request
       </Typography>
 
       <Typography
@@ -36,7 +36,14 @@ export default function SubmitRequest() {
       >
         Explain your problem below and submit request
       </Typography>
-      <Box display={"flex"} paddingTop={5} gutterBottom>
+      <Box
+        sx={{
+          gap: "16px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+        }}
+      >
         <TextField
           id="outlined-multiline-static"
           label="Message"
@@ -46,17 +53,17 @@ export default function SubmitRequest() {
           size="Normal"
           fullWidth
         />
-      </Box>
-      <Box paddingTop={2} display={"flex"} flexDirection={"row-reverse"}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            alert("Message Sent");
-          }}
-        >
-          Submit Request
-        </Button>
+        <Box sx={{ width: "fit-content" }}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              alert("Message Sent");
+            }}
+          >
+            Submit Request
+          </Button>
+        </Box>
       </Box>
     </Box>
   );

@@ -17,7 +17,7 @@ const series = [
     type: "line",
     yAxisKey: "general",
     color: "#f44336",
-    label: "Threshold",
+    label: "Target",
     data: [60, 60, 60, 60, 60],
     valueFormatter,
   },

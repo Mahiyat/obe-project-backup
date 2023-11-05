@@ -51,7 +51,7 @@ const series = [
     type: "line",
     yAxisKey: "general",
     color: "#f44336",
-    label: "Threshold",
+    label: "Target",
     data: [60, 60],
     valueFormatter,
   },
@@ -96,7 +96,7 @@ export default function AllCourseGraph() {
         </ChartContainer>
       </Box>
       <Typography variant="body1" gutterBottom>
-        Figure: All Active Courses
+        Figure: All Completed Courses
       </Typography>
     </Box>
   )

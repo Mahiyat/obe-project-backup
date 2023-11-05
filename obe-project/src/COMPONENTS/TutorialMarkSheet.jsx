@@ -7,21 +7,23 @@ const columns = [
   {
     field: "id",
     headerName: "Sl No",
-    width: 150,
+    width: 250,
   },
   {
     field: "roll",
     headerName: "Class Roll",
-    width: 250,
+    width: 350,
   },
   {
     field: "name",
     headerName: "Student Name",
-    width: 200,
+    width: 400,
   },
   {
     field: "marks",
     headerName: "Marks Obtained",
+    align: "center",
+    headerAlign: "center",
     width: 150,
   },
 ];
@@ -74,7 +76,7 @@ export default function TutorialMarkSheet() {
       >
         {location.state.title} Marks
       </Typography>
-      <Box sx={{ margin: "auto", width: "60%" }}>
+      <Box>
         <DataGrid
           rows={rows}
           columns={columns}
@@ -95,7 +97,7 @@ export default function TutorialMarkSheet() {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "flex-end",
+          justifyContent: "flex-start",
           position: "relative",
           paddingY: "16px",
           gap: "16px",
@@ -103,22 +105,12 @@ export default function TutorialMarkSheet() {
       >
         <Button
           variant="contained"
-          sx={{
-            position: "absolute",
-            right: "10%",
-            bottom: "0",
-          }}
           onClick={() => navigate(-1)}
         >
           Back
         </Button>
         <Button
           variant="contained"
-          sx={{
-            position: "absolute",
-            right: "3%",
-            bottom: "0",
-          }}
           onClick={() => {
             alert("Marks Saved");
           }}

@@ -3,6 +3,8 @@ import { Box, Typography } from "@mui/material";
 
 import Card from "./Card";
 import Card1 from "./Card1";
+import Welcome from "./Welcome";
+import RecentActivity from "./RecentActivity";
 
 export default function Dashboard() {
   return (
@@ -25,6 +27,7 @@ export default function Dashboard() {
       >
         Dashboard
       </Typography>
+      <Welcome />
       <Box
         sx={{
           display: "flex",
@@ -64,9 +67,10 @@ export default function Dashboard() {
           </Typography>
           <Typography variant="h3">2</Typography>
         </Card> */}
-        <Card cardDesc="Active Courses" cardNum="10" />
+        <Card cardDesc="Active Courses" cardNum="2" />
         <Card1 cardDesc="Marks Submission Remaining" cardNum="2" />
       </Box>
+      <RecentActivity />
     </Box>
   );
 }
