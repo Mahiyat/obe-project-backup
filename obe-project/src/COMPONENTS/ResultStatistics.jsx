@@ -10,6 +10,8 @@ import {
 
 import AllCourseGraph from "./AllCourseGraph";
 import SingleCourseMenu from "./SingleCourseMenu";
+import CourseTypeSelection from "./CourseTypeSelection";
+import EvaluationSelection from "./EvaluationSelection";
 
 export default function ResultStatistics() {
   const [type, setType] = React.useState("");
@@ -24,7 +26,7 @@ export default function ResultStatistics() {
       sx={{
         display: "flex",
         flexDirection: "column",
-        gap: "24px",
+        gap: "4px",
         flexGrow: 1,
         bgcolor: "background.default",
         p: 3,
@@ -41,39 +43,7 @@ export default function ResultStatistics() {
       >
         Result Statistics
       </Typography>
-      <Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "flex-start",
-            alignItems: "center",
-          }}
-        >
-          <Box sx={{ minWidth: 200 }}>
-            <FormControl fullWidth>
-              <InputLabel id="type-select-label">Select Type</InputLabel>
-              <Select
-                labelId="type-select-label"
-                id="type-select"
-                value={type}
-                label="Select Type"
-                onChange={handleTypeChange}
-              >
-                <MenuItem value={"Single Course"}>Single Course</MenuItem>
-                <MenuItem value={"All Completed Courses"}>
-                  All Completed Courses
-                </MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-        </Box>
-      </Box>
-      {type === "All Completed Courses" ? (
-        <AllCourseGraph />
-      ) : type === "Single Course" ? (
-        <SingleCourseMenu />
-      ) : null}
+      <EvaluationSelection />
     </Box>
   );
 }
