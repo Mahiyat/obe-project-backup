@@ -67,7 +67,7 @@ export default function Dashboard() {
           </Typography>
           <Typography variant="h3">2</Typography>
         </Card> */}
-        <Card cardDesc="Active Courses" cardNum="2" />
+        <Card cardDesc="Total Courses" cardNum="4" />
         <Card1 cardDesc="Marks Submission Remaining" cardNum="2" />
       </Box>
       <RecentActivity />

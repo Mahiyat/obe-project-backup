@@ -24,7 +24,7 @@ export default function SubmitRequest() {
         }}
         gutterBottom
       >
-        Edit Access Request
+        Marks Update Request
       </Typography>
 
       <Typography
