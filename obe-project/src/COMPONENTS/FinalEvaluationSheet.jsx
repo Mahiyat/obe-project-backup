@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
+import CustomToolBar from "./CustomToolBar";
 
 const columns = [
   { field: "id", headerName: "Roll No.", width: 150 },
@@ -199,6 +200,7 @@ export default function FinalEvaluationSheet() {
         <DataGrid
           rows={rows}
           columns={columns}
+          slots={{ toolbar: CustomToolBar, }}
           initialState={{
             pagination: {
               paginationModel: { page: 0, pageSize: 80 },

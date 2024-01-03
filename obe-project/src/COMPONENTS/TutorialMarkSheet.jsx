@@ -3,6 +3,8 @@ import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import CustomToolBar from "./CustomToolBar";
+
 const columns = [
   {
     field: "id",
@@ -22,6 +24,7 @@ const columns = [
   {
     field: "marks",
     headerName: "Marks Obtained",
+    type: "number",
     align: "center",
     headerAlign: "center",
     width: 150,
@@ -88,7 +91,7 @@ export default function TutorialMarkSheet() {
             },
           }}
           pageSizeOptions={[100]}
-          // checkboxSelection
+          slots={{ toolbar: CustomToolBar }}
           disableRowSelectionOnClick
         />
       </Box>
@@ -103,10 +106,7 @@ export default function TutorialMarkSheet() {
           gap: "16px",
         }}
       >
-        <Button
-          variant="contained"
-          onClick={() => navigate(-1)}
-        >
+        <Button variant="contained" onClick={() => navigate(-1)}>
           Back
         </Button>
         <Button
