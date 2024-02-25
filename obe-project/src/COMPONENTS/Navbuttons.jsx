@@ -1,7 +1,7 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
-import { Box } from "@mui/material";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import { Box } from '@mui/material';
 
 export default function Navbuttons() {
   const navigate = useNavigate();
@@ -10,82 +10,82 @@ export default function Navbuttons() {
     <Box
       className="navButton"
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "16px",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '16px',
       }}
     >
       <Button
         sx={{
-          background: "#C9CEFF",
-          color: "black",
-          fontWeight: "bold",
+          background: '#C9CEFF',
+          color: 'black',
+          fontWeight: 'bold',
           borderRadius: 5,
           width: 180,
           //   marginBottom: 3,
-          ":hover": {
-            background: "#FF9900",
-            color: "white",
+          ':hover': {
+            background: '#82b1ff',
+            color: 'white',
           },
         }}
         variant="contained"
-        onClick={() => navigate("/")}
+        onClick={() => navigate('/')}
       >
         Dashboard
       </Button>
       <Button
         sx={{
-          background: "#C9CEFF",
-          color: "black",
-          fontWeight: "bold",
+          background: '#C9CEFF',
+          color: 'black',
+          fontWeight: 'bold',
           borderRadius: 5,
           width: 180,
           //   marginBottom: 3,
-          ":hover": {
-            background: "#FF9900",
-            color: "white",
+          ':hover': {
+            background: '#82b1ff',
+            color: 'white',
           },
         }}
         variant="contained"
-        onClick={() => navigate("/view-courses")}
+        onClick={() => navigate('/view-courses')}
       >
         View Courses
       </Button>
       <Button
         sx={{
-          background: "#C9CEFF",
-          color: "black",
-          fontWeight: "bold",
+          background: '#C9CEFF',
+          color: 'black',
+          fontWeight: 'bold',
           borderRadius: 5,
           width: 180,
           //   marginBottom: 3,
-          ":hover": {
-            background: "#FF9900",
-            color: "white",
+          ':hover': {
+            background: '#82b1ff',
+            color: 'white',
           },
         }}
         variant="contained"
-        onClick={() => navigate("/submit-request")}
+        onClick={() => navigate('/submit-request')}
       >
         Submit Request
       </Button>
       <Button
         sx={{
-          background: "#C9CEFF",
-          color: "black",
-          fontWeight: "bold",
+          background: '#C9CEFF',
+          color: 'black',
+          fontWeight: 'bold',
           borderRadius: 5,
           width: 180,
-          marginBottom: "40%",
-          ":hover": {
-            background: "#FF9900",
-            color: "white",
+          marginBottom: '40%',
+          ':hover': {
+            background: '#82b1ff',
+            color: 'white',
           },
         }}
         variant="contained"
-        onClick={() => navigate("/result-statistics")}
+        onClick={() => navigate('/result-statistics')}
       >
         Result Statistics
       </Button>

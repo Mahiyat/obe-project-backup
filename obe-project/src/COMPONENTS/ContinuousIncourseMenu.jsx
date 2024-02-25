@@ -1,14 +1,15 @@
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import React from 'react';
 
-import GraphTabs from './GraphTabs';
 
-export default function ContinuousIncourseMenu() {
-  const [type, setType] = React.useState('');
+export default function ContinuousIncourseMenu(props) {
+  // const [incourseType, setIncourseType] = React.useState('');
 
-  const handleIncourseTypeChange = (event) => {
-    setType(event.target.value);
-  };
+  // const handleIncourseTypeChange = (event) => {
+  //   setIncourseType(event.target.value);
+  // };
+
+  const {incourseType, handleIncourseTypeChange}=props;
 
   return (
     <Box sx={{display: 'flex', flexDirection: 'row', gap: '24px'}}>
@@ -28,7 +29,7 @@ export default function ContinuousIncourseMenu() {
             <Select
               labelId="incourse-select-label"
               id="incourse-select"
-              value={type}
+              value={incourseType}
               label="Select Incourse Type"
               onChange={handleIncourseTypeChange}
             >
@@ -42,7 +43,7 @@ export default function ContinuousIncourseMenu() {
           </FormControl>
         </Box>
       </Box>
-      {type !== "" && (<GraphTabs incourse={type} />)}
+      {/* {incourseType !== "" && (<GraphTabs incourse={incourseType} />)} */}
     </Box>
   );
 }

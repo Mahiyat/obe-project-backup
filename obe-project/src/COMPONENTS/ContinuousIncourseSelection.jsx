@@ -3,17 +3,26 @@ import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 import ContinuousIncourseMenu from './ContinuousIncourseMenu';
 
-export default function ContinuousIncourseSelection() {
-  const [course, setCourse] = React.useState('');
-  const [examTitle, setExamTitle] = React.useState('');
+export default function ContinuousIncourseSelection(props) {
+  // const [course, setCourse] = React.useState('');
+  // const [examTitle, setExamTitle] = React.useState('');
 
-  const handleCourseChange = (event) => {
-    setCourse(event.target.value);
-  };
+  // const handleCourseChange = (event) => {
+  //   setCourse(event.target.value);
+  // };
 
-  const handleExamTitleChange = (event) => {
-    setExamTitle(event.target.value);
-  };
+  // const handleExamTitleChange = (event) => {
+  //   setExamTitle(event.target.value);
+  // };
+
+  const {
+    course,
+    handleCourseChange,
+    examTitle,
+    handleExamTitleChange,
+    incourseType,
+    handleIncourseTypeChange,
+  } = props;
 
   return (
     <Box
@@ -77,7 +86,12 @@ export default function ContinuousIncourseSelection() {
         </Box>
       </Box>
 
-      {course !== '' && examTitle !== '' && <ContinuousIncourseMenu />}
+      {course !== '' && examTitle !== '' && (
+        <ContinuousIncourseMenu
+          incourseType={incourseType}
+          handleIncourseTypeChange={handleIncourseTypeChange}
+        />
+      )}
     </Box>
   );
 }

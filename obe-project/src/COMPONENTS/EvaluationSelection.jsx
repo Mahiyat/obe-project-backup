@@ -4,12 +4,28 @@ import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import CourseTypeSelection from './CourseTypeSelection';
 import ContinuousIncourseSelection from './ContinuousIncourseSelection';
 
-export default function EvaluationSelection() {
-  const [type, setType] = React.useState('');
+export default function EvaluationSelection(props) {
+  // const [type, setType] = React.useState('');
 
-  const handleEvaluationTypeChange = (event) => {
-    setType(event.target.value);
-  };
+  // const handleEvaluationTypeChange = (event) => {
+  //   setType(event.target.value);
+  // };
+  const {
+    type,
+    handleEvaluationTypeChange,
+    course,
+    handleCourseChange,
+    examTitle,
+    handleExamTitleChange,
+    incourseType,
+    handleIncourseTypeChange,
+    semesterEndCourseSelection,
+    handleSemesterEndCourseSelection,
+    semesterEndCourse,
+    handleSemesterEndCourse,
+    semesterEndExamTitle,
+    handleSemesterEndExamTitle,
+  } = props;
 
   return (
     <Box
@@ -52,9 +68,23 @@ export default function EvaluationSelection() {
       </Box>
 
       {type === 'Semester End Evaluation' ? (
-        <CourseTypeSelection />
+        <CourseTypeSelection
+          semesterEndCourseSelection={semesterEndCourseSelection}
+          handleSemesterEndCourseSelection={handleSemesterEndCourseSelection}
+          semesterEndCourse={semesterEndCourse}
+          handleSemesterEndCourse={handleSemesterEndCourse}
+          semesterEndExamTitle={semesterEndExamTitle}
+          handleSemesterEndExamTitle={handleSemesterEndExamTitle}
+        />
       ) : type === 'Continuous Incourse Evaluation' ? (
-        <ContinuousIncourseSelection />
+        <ContinuousIncourseSelection
+          course={course}
+          handleCourseChange={handleCourseChange}
+          examTitle={examTitle}
+          handleExamTitleChange={handleExamTitleChange}
+          incourseType={incourseType}
+          handleIncourseTypeChange={handleIncourseTypeChange}
+        />
       ) : null}
     </Box>
   );

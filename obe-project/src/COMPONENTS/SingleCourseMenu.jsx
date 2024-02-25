@@ -1,19 +1,20 @@
 import React from 'react';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
-import SingleCourseGraph from './SingleCourseGraph';
 
-export default function SingleCourseMenu() {
-  const [course, setCourse] = React.useState('');
-  const [examTitle, setExamTitle] = React.useState('');
+export default function SingleCourseMenu(props) {
+  // const [course, setCourse] = React.useState('');
+  // const [examTitle, setExamTitle] = React.useState('');
 
-  const handleCourseChange = (event) => {
-    setCourse(event.target.value);
-  };
+  // const handleCourseChange = (event) => {
+  //   setCourse(event.target.value);
+  // };
 
-  const handleExamTitleChange = (event) => {
-    setExamTitle(event.target.value);
-  };
+  // const handleExamTitleChange = (event) => {
+  //   setExamTitle(event.target.value);
+  // };
+
+  const {semesterEndCourse, handleSemesterEndCourse, semesterEndExamTitle, handleSemesterEndExamTitle}=props;
 
   return (
     <Box
@@ -38,9 +39,9 @@ export default function SingleCourseMenu() {
             <Select
               labelId="course-select-label"
               id="course-select"
-              value={course}
+              value={semesterEndCourse}
               label="Course"
-              onChange={handleCourseChange}
+              onChange={handleSemesterEndCourse}
             >
               <MenuItem value={'CSE-105'}>CSE-105</MenuItem>
               <MenuItem value={'CSE-107'}>CSE-107</MenuItem>
@@ -62,9 +63,9 @@ export default function SingleCourseMenu() {
             <Select
               labelId="exam-select-label"
               id="exam-select"
-              value={examTitle}
+              value={semesterEndExamTitle}
               label="Exam Title"
-              onChange={handleExamTitleChange}
+              onChange={handleSemesterEndExamTitle}
             >
               <MenuItem value={'1st Year 1st Semester 2021'}>
                 1st Year 1st Semester 2021
@@ -77,9 +78,9 @@ export default function SingleCourseMenu() {
         </Box>
       </Box>
 
-      {course !== '' && examTitle !== '' && (
-        <SingleCourseGraph course={course} exam={examTitle} />
-      )}
+      {/* {semesterEndCourse !== '' && semesterEndExamTitle !== '' && (
+        <SingleCourseGraph course={semesterEndCourse} exam={semesterEndExamTitle} />
+      )} */}
     </Box>
   );
 }
