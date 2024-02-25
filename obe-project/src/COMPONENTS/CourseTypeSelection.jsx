@@ -1,15 +1,23 @@
 import React from 'react';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
-import AllCourseGraph from './AllCourseGraph';
 import SingleCourseMenu from './SingleCourseMenu';
 
-export default function CourseTypeSelection() {
-  const [type, setType] = React.useState('');
+export default function CourseTypeSelection(props) {
+  // const [type, setType] = React.useState('');
 
-  const handleTypeChange = (event) => {
-    setType(event.target.value);
-  };
+  // const handleTypeChange = (event) => {
+  //   setType(event.target.value);
+  // };
+
+  const {
+    semesterEndCourseSelection,
+    handleSemesterEndCourseSelection,
+    semesterEndCourse,
+    handleSemesterEndCourse,
+    semesterEndExamTitle,
+    handleSemesterEndExamTitle,
+  } = props;
 
   return (
     <Box
@@ -34,9 +42,9 @@ export default function CourseTypeSelection() {
             <Select
               labelId="type-select-label"
               id="type-select"
-              value={type}
+              value={semesterEndCourseSelection}
               label="Select Type"
-              onChange={handleTypeChange}
+              onChange={handleSemesterEndCourseSelection}
             >
               <MenuItem value={'Single Course'}>Single Course</MenuItem>
               <MenuItem value={'All Completed Courses'}>
@@ -47,11 +55,19 @@ export default function CourseTypeSelection() {
         </Box>
       </Box>
 
-      {type === 'All Completed Courses' ? (
+      {/* {semesterEndCourseSelection === 'All Completed Courses' ? (
         <AllCourseGraph />
-      ) : type === 'Single Course' ? (
+      ) : semesterEndCourseSelection === 'Single Course' ? (
         <SingleCourseMenu />
-      ) : null}
+      ) : null} */}
+      {semesterEndCourseSelection === 'Single Course' && (
+        <SingleCourseMenu
+          semesterEndCourse={semesterEndCourse}
+          handleSemesterEndCourse={handleSemesterEndCourse}
+          semesterEndExamTitle={semesterEndExamTitle}
+          handleSemesterEndExamTitle={handleSemesterEndExamTitle}
+        />
+      )}
     </Box>
   );
 }
