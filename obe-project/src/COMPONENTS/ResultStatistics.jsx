@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 
 import EvaluationSelection from './EvaluationSelection';
+import GraphTabs from './GraphTabs';
 
 export default function ResultStatistics() {
   return (
@@ -27,7 +28,10 @@ export default function ResultStatistics() {
       >
         Result Statistics
       </Typography>
-      <EvaluationSelection />
+      <Stack spacing={4}>
+        <EvaluationSelection />
+        <GraphTabs incourse='' />
+      </Stack>
     </Box>
   );
 }
