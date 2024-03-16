@@ -49,7 +49,7 @@ export default function GraphTabs({incourse}) {
 
   return (
     <Box>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider', alignContent:'center' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
           <Tab icon={<PieChartIcon />} label="Pie Chart" {...a11yProps(0)} />
           <Tab icon={<StackedBarChartIcon />} label="Stacked Bar Chart" {...a11yProps(1)} />

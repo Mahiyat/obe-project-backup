@@ -18,8 +18,10 @@ const size = {
 
 export default function PieChart_({incourse}) {
   return (
-    <Box>
-      <Typography>{incourse}</Typography>
+    <Box
+     paddingTop={10}
+    >
+      
       <PieChart
 
       series={[
@@ -40,7 +42,10 @@ export default function PieChart_({incourse}) {
       }}
       {...size}
     />
-
+    <Typography
+      paddingTop={4}
+      variant='h5'
+    >{incourse}</Typography>
     </Box>
   )
 }
