@@ -1,8 +1,12 @@
 import React from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Alert, Box, Button, Slide, Snackbar, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import CustomToolBar from "./CustomToolBar";
+
+function SlideTransition(props) {
+  return <Slide {...props} direction="up" />;
+}
 
 const columns = [
   { field: "id", headerName: "Roll No.", width: 150 },
@@ -172,6 +176,25 @@ const rows = [
 export default function FinalEvaluationSheet() {
   const navigate = useNavigate();
 
+  const [state, setState] = React.useState({
+    open: false,
+    Transition: Slide,
+  });
+
+  const handleClick = (Transition) => () => {
+    setState({
+      open: true,
+      Transition,
+    });
+  };
+
+  const handleClose = () => {
+    setState({
+      ...state,
+      open: false,
+    });
+  };
+
   return (
     <Box
       component="main"
@@ -224,12 +247,25 @@ export default function FinalEvaluationSheet() {
         </Button>
         <Button
           variant="contained"
-          onClick={() => {
-            alert("Marks Saved");
-          }}
+          onClick={handleClick(SlideTransition)}
         >
           Save
         </Button>
+        <Snackbar
+          open={state.open}
+          onClose={handleClose}
+          TransitionComponent={state.Transition}
+          key={state.Transition.name}
+          autoHideDuration={1200}
+        >
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            sx={{ width: '100%' }}
+          >
+            Marks Saved!
+          </Alert>
+        </Snackbar>
       </Box>
     </Box>
   );
