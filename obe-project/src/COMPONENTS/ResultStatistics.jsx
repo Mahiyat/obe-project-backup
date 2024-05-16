@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 
 import EvaluationSelection from './EvaluationSelection';
@@ -43,6 +43,25 @@ export default function ResultStatistics() {
   const handleSemesterEndExamTitle = (event) => {
     setSemesterEndExamTitle(event.target.value);
   };
+
+  useEffect(() => {
+    if (type === 'Semester End Evaluation') {
+      setIncourseType('');
+      setCourse('');
+      setExamTitle('');
+    } else if (type === 'Continuous Incourse Evaluation') {
+      setSemesterEndCourseSelection('');
+      setSemesterEndCourse('');
+      setSemesterEndExamTitle('');
+    }
+  }, [type]);
+
+  useEffect(() => {
+    if (semesterEndCourseSelection === 'All Completed Courses') {
+      setSemesterEndCourse('');
+      setSemesterEndExamTitle('');
+    }
+  }, [semesterEndCourseSelection]);
 
   return (
     <Box
