@@ -1,6 +1,7 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 import TextField from "@mui/material/TextField";
+import MessageSubmitButton from "./MessageSubmitButton";
 
 export default function SubmitRequest() {
   return (
@@ -53,17 +54,7 @@ export default function SubmitRequest() {
           size="Normal"
           fullWidth
         />
-        <Box sx={{ width: "fit-content" }}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              alert("Message Sent");
-            }}
-          >
-            Submit Request
-          </Button>
-        </Box>
+        <MessageSubmitButton />
       </Box>
     </Box>
   );
