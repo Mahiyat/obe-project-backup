@@ -16,7 +16,7 @@ const size = {
   height: 300,
 };
 
-export default function PieChart_({ incourse }) {
+export default function PieChart_({ labelType }) {
   return (
     <Box>
       <Box
@@ -39,7 +39,7 @@ export default function PieChart_({ incourse }) {
           {...size}
         />
       </Box>
-      <Typography>{incourse}</Typography>
+      <Typography>{labelType}</Typography>
     </Box>
   );
 }
