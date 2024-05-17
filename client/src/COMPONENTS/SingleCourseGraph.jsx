@@ -1,36 +1,70 @@
-import { Box, Typography } from "@mui/material";
-import { BarPlot, ChartContainer, ChartsTooltip, ChartsXAxis, ChartsYAxis, LinePlot } from "@mui/x-charts";
-import React from "react";
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+import {
+  BarPlot,
+  ChartContainer,
+  ChartsTooltip,
+  ChartsXAxis,
+  ChartsYAxis,
+  LinePlot,
+} from '@mui/x-charts';
+
+import GraphTabs from './GraphTabs';
 
 const valueFormatter = (value) => `${value}%`;
 
 const series = [
   {
-    type: "bar",
-    stack: "",
-    yAxisKey: "general",
-    color: "#42a5f5",
+    type: 'bar',
+    stack: '',
+    yAxisKey: 'general',
+    color: '#42a5f5',
     data: [80, 75, 70, 60, 65],
+    highlightScope: {
+      highlighted: 'item',
+    },
     valueFormatter,
   },
   {
-    type: "line",
-    yAxisKey: "general",
-    color: "#f44336",
-    label: "Target",
+    type: 'line',
+    yAxisKey: 'general',
+    color: '#f44336',
+    label: 'Target',
     data: [60, 60, 60, 60, 60],
     valueFormatter,
   },
 ];
 
-export default function SingleCourseGraph({course, exam}) {
+export default function SingleCourseGraph({
+  course,
+  exam,
+  selectedCO,
+  handleSelectedCO,
+}) {
+  const onItemClick = (event, data) => {
+    console.log(event, data);
+    const clickedIndex = data.dataIndex; // get the index of the clicked bar
+    const coLabels = ['CO1', 'CO2', 'CO3', 'CO4', 'CO5'];
+    console.log(clickedIndex);
+    handleSelectedCO(coLabels[clickedIndex]);
+  };
+
+  console.log(selectedCO);
+
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box
+      sx={{
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <ChartContainer
@@ -39,17 +73,17 @@ export default function SingleCourseGraph({course, exam}) {
           height={400}
           xAxis={[
             {
-              id: "courseOutcome",
-              data: ["CO1", "CO2", "CO3", "CO4", "CO5"],
-              scaleType: "band",
+              id: 'courseOutcome',
+              data: ['CO1', 'CO2', 'CO3', 'CO4', 'CO5'],
+              scaleType: 'band',
             },
           ]}
           yAxis={[
-            { id: "general", scaleType: "linear" },
-            { id: "general", scaleType: "linear" },
+            { id: 'general', scaleType: 'linear' },
+            { id: 'general', scaleType: 'linear' },
           ]}
         >
-          <BarPlot />
+          <BarPlot onItemClick={onItemClick} />
           <LinePlot />
           <ChartsXAxis
             label="Course Outcome"
@@ -60,10 +94,11 @@ export default function SingleCourseGraph({course, exam}) {
           <ChartsTooltip />
           {/* <ChartsYAxis label="Threshold" position="right" axisId="threshold" /> */}
         </ChartContainer>
+        <Typography variant="body1" gutterBottom>
+          {`Figure: ${exam} ${course}`}
+        </Typography>
       </Box>
-      <Typography variant="body1" gutterBottom>
-        {`Figure: ${exam} ${course}`}
-      </Typography>
+      {selectedCO !== '' && <GraphTabs labelType={selectedCO} />}
     </Box>
   );
 }

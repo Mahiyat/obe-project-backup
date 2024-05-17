@@ -40,7 +40,7 @@ function a11yProps(index) {
   };
 }
 
-export default function GraphTabs({incourse}) {
+export default function GraphTabs({labelType}) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -48,7 +48,7 @@ export default function GraphTabs({incourse}) {
   };
 
   return (
-    <Box>
+    <Box sx={{width: '100%'}}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider', alignContent:'center' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
           <Tab icon={<PieChartIcon />} label="Pie Chart" {...a11yProps(0)} />
@@ -56,10 +56,10 @@ export default function GraphTabs({incourse}) {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <PieChart incourse={incourse} />
+        <PieChart labelType={labelType} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <StackGraph incourse={incourse} />
+        <StackGraph labelType={labelType} />
       </CustomTabPanel>
     </Box>
   );

@@ -2,8 +2,8 @@ import { Box } from '@mui/material';
 import { BarChart } from '@mui/x-charts';
 import React from 'react';
 
-export default function StackGraph({incourse}) {
-  console.log(incourse)
+export default function StackGraph({labelType}) {
+  console.log(labelType)
   return (
     <Box>
       <Box
@@ -16,7 +16,7 @@ export default function StackGraph({incourse}) {
         <BarChart
           width={300}
           height={400}
-          xAxis={[{ scaleType: 'band', data: [incourse] }]}
+          xAxis={[{ scaleType: 'band', data: [labelType] }]}
           series={[
             { data: [9], stack: 'A', label: '80%-100%' },
             { data: [26], stack: 'A', label: '70%-79%' },

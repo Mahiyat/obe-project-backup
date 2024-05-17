@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
-
 export default function SingleCourseMenu(props) {
   // const [course, setCourse] = React.useState('');
   // const [examTitle, setExamTitle] = React.useState('');
@@ -14,7 +13,14 @@ export default function SingleCourseMenu(props) {
   //   setExamTitle(event.target.value);
   // };
 
-  const {semesterEndCourse, handleSemesterEndCourse, semesterEndExamTitle, handleSemesterEndExamTitle}=props;
+  const {
+    semesterEndCourse,
+    handleSemesterEndCourse,
+    semesterEndExamTitle,
+    handleSemesterEndExamTitle,
+    selectedCO,
+    handleSelectedCO,
+  } = props;
 
   return (
     <Box

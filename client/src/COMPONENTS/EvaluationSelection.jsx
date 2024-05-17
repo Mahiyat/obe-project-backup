@@ -25,6 +25,8 @@ export default function EvaluationSelection(props) {
     handleSemesterEndCourse,
     semesterEndExamTitle,
     handleSemesterEndExamTitle,
+    selectedCO,
+    handleSelectedCO,
   } = props;
 
   return (
@@ -75,6 +77,8 @@ export default function EvaluationSelection(props) {
           handleSemesterEndCourse={handleSemesterEndCourse}
           semesterEndExamTitle={semesterEndExamTitle}
           handleSemesterEndExamTitle={handleSemesterEndExamTitle}
+          selectedCO={selectedCO}
+          handleSelectedCO={handleSelectedCO}
         />
       ) : type === 'Continuous Incourse Evaluation' ? (
         <ContinuousIncourseSelection

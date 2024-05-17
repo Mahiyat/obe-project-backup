@@ -15,6 +15,7 @@ export default function ResultStatistics() {
     React.useState('');
   const [semesterEndCourse, setSemesterEndCourse] = React.useState('');
   const [semesterEndExamTitle, setSemesterEndExamTitle] = React.useState('');
+  const [selectedCO, setSelectedCO] = React.useState('');
 
   const handleEvaluationTypeChange = (event) => {
     setType(event.target.value);
@@ -44,6 +45,10 @@ export default function ResultStatistics() {
     setSemesterEndExamTitle(event.target.value);
   };
 
+  const handleSelectedCO = (label) => {
+    setSelectedCO(label);
+  };
+
   useEffect(() => {
     if (type === 'Semester End Evaluation') {
       setIncourseType('');
@@ -53,6 +58,7 @@ export default function ResultStatistics() {
       setSemesterEndCourseSelection('');
       setSemesterEndCourse('');
       setSemesterEndExamTitle('');
+      setSelectedCO('');
     }
   }, [type]);
 
@@ -60,6 +66,7 @@ export default function ResultStatistics() {
     if (semesterEndCourseSelection === 'All Completed Courses') {
       setSemesterEndCourse('');
       setSemesterEndExamTitle('');
+      setSelectedCO('');
     }
   }, [semesterEndCourseSelection]);
 
@@ -102,12 +109,21 @@ export default function ResultStatistics() {
           handleSemesterEndCourse={handleSemesterEndCourse}
           semesterEndExamTitle={semesterEndExamTitle}
           handleSemesterEndExamTitle={handleSemesterEndExamTitle}
+          selectedCO={selectedCO}
+          handleSelectedCO={handleSelectedCO}
         />
-        {incourseType !== '' && <GraphTabs incourse={incourseType} />}
-        {semesterEndCourseSelection === 'All Completed Courses' && <AllCourseGraph />}
+        {incourseType !== '' && <GraphTabs labelType={incourseType} />}
+        {semesterEndCourseSelection === 'All Completed Courses' && (
+          <AllCourseGraph />
+        )}
         {semesterEndCourse !== '' && semesterEndExamTitle !== '' && (
-        <SingleCourseGraph course={semesterEndCourse} exam={semesterEndExamTitle} />
-      )}
+          <SingleCourseGraph
+            course={semesterEndCourse}
+            exam={semesterEndExamTitle}
+            selectedCO={selectedCO}
+            handleSelectedCO={handleSelectedCO}
+          />
+        )}
       </Stack>
     </Box>
   );
