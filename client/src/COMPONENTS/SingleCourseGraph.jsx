@@ -44,7 +44,7 @@ export default function SingleCourseGraph({
   const onItemClick = (event, data) => {
     console.log(event, data);
     const clickedIndex = data.dataIndex; // get the index of the clicked bar
-    const coLabels = ['CO1', 'CO2', 'CO3', 'CO4', 'CO5'];
+    const coLabels = ['CLO1', 'CLO2', 'CLO3', 'CLO4', 'CLO5'];
     console.log(clickedIndex);
     handleSelectedCO(coLabels[clickedIndex]);
   };
@@ -74,7 +74,7 @@ export default function SingleCourseGraph({
           xAxis={[
             {
               id: 'courseOutcome',
-              data: ['CO1', 'CO2', 'CO3', 'CO4', 'CO5'],
+              data: ['CLO1', 'CLO2', 'CLO3', 'CLO4', 'CLO5'],
               scaleType: 'band',
             },
           ]}

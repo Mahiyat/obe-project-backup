@@ -50,11 +50,11 @@ export default function ResultStatistics() {
   };
 
   useEffect(() => {
-    if (type === 'Semester End Evaluation') {
+    if (type === 'Semester End Examination') {
       setIncourseType('');
       setCourse('');
       setExamTitle('');
-    } else if (type === 'Continuous Incourse Evaluation') {
+    } else if (type === 'Continuous Internal Evaluation') {
       setSemesterEndCourseSelection('');
       setSemesterEndCourse('');
       setSemesterEndExamTitle('');
@@ -63,9 +63,8 @@ export default function ResultStatistics() {
   }, [type]);
 
   useEffect(() => {
-    if (semesterEndCourseSelection === 'All Completed Courses') {
+    if (semesterEndCourseSelection === 'All Courses') {
       setSemesterEndCourse('');
-      setSemesterEndExamTitle('');
       setSelectedCO('');
     }
   }, [semesterEndCourseSelection]);
@@ -113,8 +112,8 @@ export default function ResultStatistics() {
           handleSelectedCO={handleSelectedCO}
         />
         {incourseType !== '' && <GraphTabs labelType={incourseType} />}
-        {semesterEndCourseSelection === 'All Completed Courses' && (
-          <AllCourseGraph />
+        {semesterEndCourseSelection === 'All Courses' && semesterEndExamTitle !== '' && (
+          <AllCourseGraph semesterEndExamTitle={semesterEndExamTitle} />
         )}
         {semesterEndCourse !== '' && semesterEndExamTitle !== '' && (
           <SingleCourseGraph

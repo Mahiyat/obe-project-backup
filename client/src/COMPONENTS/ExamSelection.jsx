@@ -1,20 +1,16 @@
 import React from 'react';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
-import SingleCourseMenu from './SingleCourseMenu';
+import CourseTypeSelection from './CourseTypeSelection';
 
-export default function CourseTypeSelection(props) {
-  // const [type, setType] = React.useState('');
-
-  // const handleTypeChange = (event) => {
-  //   setType(event.target.value);
-  // };
-
+export default function EvaluationSelection(props) {
   const {
     semesterEndCourseSelection,
     handleSemesterEndCourseSelection,
     semesterEndCourse,
     handleSemesterEndCourse,
+    semesterEndExamTitle,
+    handleSemesterEndExamTitle,
     selectedCO,
     handleSelectedCO,
   } = props;
@@ -36,32 +32,30 @@ export default function CourseTypeSelection(props) {
           alignItems: 'center',
         }}
       >
-        <Box sx={{ minWidth: 200 }}>
+        <Box sx={{ minWidth: 250 }}>
           <FormControl fullWidth>
-            <InputLabel id="type-select-label">Select Type</InputLabel>
+            <InputLabel id="exam-select-label">Exam Title</InputLabel>
             <Select
-              labelId="type-select-label"
-              id="type-select"
-              value={semesterEndCourseSelection}
-              label="Select Type"
-              onChange={handleSemesterEndCourseSelection}
+              labelId="exam-select-label"
+              id="exam-select"
+              value={semesterEndExamTitle}
+              label="Exam Title"
+              onChange={handleSemesterEndExamTitle}
             >
-              <MenuItem value={'Single Course'}>Single Course</MenuItem>
-              <MenuItem value={'All Courses'}>
-                All Courses
+              <MenuItem value={'1st Year 1st Semester 2021'}>
+                1st Year 1st Semester 2021
+              </MenuItem>
+              <MenuItem value={'1st Year 1st Semester 2020'}>
+                1st Year 1st Semester 2020
               </MenuItem>
             </Select>
           </FormControl>
         </Box>
       </Box>
-
-      {/* {semesterEndCourseSelection === 'All Completed Courses' ? (
-        <AllCourseGraph />
-      ) : semesterEndCourseSelection === 'Single Course' ? (
-        <SingleCourseMenu />
-      ) : null} */}
-      {semesterEndCourseSelection === 'Single Course' && (
-        <SingleCourseMenu
+      {semesterEndExamTitle !== '' && (
+        <CourseTypeSelection
+          semesterEndCourseSelection={semesterEndCourseSelection}
+          handleSemesterEndCourseSelection={handleSemesterEndCourseSelection}
           semesterEndCourse={semesterEndCourse}
           handleSemesterEndCourse={handleSemesterEndCourse}
           selectedCO={selectedCO}

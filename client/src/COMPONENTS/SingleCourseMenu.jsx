@@ -63,7 +63,7 @@ export default function SingleCourseMenu(props) {
           alignItems: 'center',
         }}
       >
-        <Box sx={{ minWidth: 250 }}>
+        {/* <Box sx={{ minWidth: 250 }}>
           <FormControl fullWidth>
             <InputLabel id="exam-select-label">Exam Title</InputLabel>
             <Select
@@ -81,7 +81,7 @@ export default function SingleCourseMenu(props) {
               </MenuItem>
             </Select>
           </FormControl>
-        </Box>
+        </Box> */}
       </Box>
 
       {/* {semesterEndCourse !== '' && semesterEndExamTitle !== '' && (
