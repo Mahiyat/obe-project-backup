@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
-import CourseTypeSelection from './CourseTypeSelection';
+import ExamSelection from './ExamSelection';
 import ContinuousIncourseSelection from './ContinuousIncourseSelection';
 
 export default function EvaluationSelection(props) {
@@ -58,19 +58,19 @@ export default function EvaluationSelection(props) {
               label="Select Evaluation Type"
               onChange={handleEvaluationTypeChange}
             >
-              <MenuItem value={'Continuous Incourse Evaluation'}>
-                Continuous Incourse Evaluation
+              <MenuItem value={'Continuous Internal Evaluation'}>
+                Continuous Internal Evaluation
               </MenuItem>
-              <MenuItem value={'Semester End Evaluation'}>
-                Semester End Evaluation
+              <MenuItem value={'Semester End Examination'}>
+                Semester End Examination
               </MenuItem>
             </Select>
           </FormControl>
         </Box>
       </Box>
 
-      {type === 'Semester End Evaluation' ? (
-        <CourseTypeSelection
+      {type === 'Semester End Examination' ? (
+        <ExamSelection
           semesterEndCourseSelection={semesterEndCourseSelection}
           handleSemesterEndCourseSelection={handleSemesterEndCourseSelection}
           semesterEndCourse={semesterEndCourse}
@@ -80,7 +80,7 @@ export default function EvaluationSelection(props) {
           selectedCO={selectedCO}
           handleSelectedCO={handleSelectedCO}
         />
-      ) : type === 'Continuous Incourse Evaluation' ? (
+      ) : type === 'Continuous Internal Evaluation' ? (
         <ContinuousIncourseSelection
           course={course}
           handleCourseChange={handleCourseChange}
