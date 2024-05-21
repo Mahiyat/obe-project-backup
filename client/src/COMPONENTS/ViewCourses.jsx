@@ -4,27 +4,33 @@ import { DataGrid } from "@mui/x-data-grid";
 
 import ViewCoursesRowActions from "./ViewCoursesRowActions";
 
+
+
 const columns = [
   {
     field: "id",
     headerName: "Sl No",
-    width: 250,
+
   },
-  { field: "courseId", headerName: "Course ID", width: 250 },
+  { field: "courseId", headerName: "Course ID",maxWidth:"250" },
   {
     field: "courseName",
     headerName: "Course Name",
-    width: 350,
+    maxWidth:700,
+    minWidth : 400,
+    
+
   },
   {
     field: "title",
     headerName: "Exam Title",
-    width: 350,
+    maxWidth:700,
+    minWidth : 400
   },
+
   {
     field: "actions",
     headerName: "Details",
-    width: 350,
     renderCell: (params) => (
       <ViewCoursesRowActions
         courseId={params.value.courseId}
@@ -61,6 +67,7 @@ const rows = [
 ];
 
 export default function ViewCourses() {
+  //const [expand, setExpand] = React.useState(DEFAULT_GRID_AUTOSIZE_OPTIONS.expand);
   return (
     <Box
       component="main"
@@ -96,20 +103,30 @@ export default function ViewCourses() {
         <Typography variant="h5" gutterBottom>
           Active Courses
         </Typography>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 3,
+
+        <Box sx={{
+          width: "100%",
+        }}>
+
+          <DataGrid
+
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 3,
+                },
               },
-            },
-          }}
-          pageSizeOptions={[3]}
-          // checkboxSelection
-          disableRowSelectionOnClick
-        />
+            }}
+            pageSizeOptions={[3]}
+            // checkboxSelection
+            disableRowSelectionOnClick
+          //autosizeOptions={expand}
+          />
+        </Box>
+
+
       </Box>
       <Box
         sx={{
@@ -123,20 +140,26 @@ export default function ViewCourses() {
         <Typography variant="h5" gutterBottom>
           Completed Courses
         </Typography>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 3,
+        <Box sx={{
+          width: "100%",
+        }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 3,
+                },
               },
-            },
-          }}
-          pageSizeOptions={[3]}
-          // checkboxSelection
-          disableRowSelectionOnClick
-        />
+            }}
+            pageSizeOptions={[3]}
+            // checkboxSelection
+            disableRowSelectionOnClick
+          />
+
+        </Box>
+
       </Box>
     </Box>
   );
