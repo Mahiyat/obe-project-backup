@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^api/courses/', include('courses.urls')),
     re_path(r'^api/cie/', include('cie.urls')),
+    re_path(r'^api/students/', include('students.urls')),
 
 ]
