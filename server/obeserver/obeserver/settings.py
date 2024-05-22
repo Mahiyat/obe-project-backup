@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'courses',
     'cie',
     'students',
+    'buttons',
 ]
 
 MIDDLEWARE = [
