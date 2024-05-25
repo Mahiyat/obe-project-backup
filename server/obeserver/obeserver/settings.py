@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'cie',
     'students',
     'buttons',
+    'marksheets',
 ]
 
 MIDDLEWARE = [

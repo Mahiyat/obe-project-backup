@@ -23,5 +23,6 @@ urlpatterns = [
     re_path(r'^api/cie/', include('cie.urls')),
     re_path(r'^api/students/', include('students.urls')),
     re_path(r'^api/buttons/', include('buttons.urls')),
+    re_path(r'^api/marksheets/', include('marksheets.urls')),
 
 ]
