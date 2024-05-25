@@ -56,3 +56,21 @@ def change_status(request, pk):
         serializer.save()
         return Response(status=status.HTTP_204_NO_CONTENT)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def get_completed_courses(request):
+    try:
+        course = Course.objects.filter(completed_status=True)
+    except Course.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = CourseSerializer(course, context={"request": request}, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_pending_courses(request):
+    try:
+        course = Course.objects.filter(completed_status=False)
+    except Course.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = CourseSerializer(course, context={"request": request}, many=True)
+    return Response(serializer.data)
