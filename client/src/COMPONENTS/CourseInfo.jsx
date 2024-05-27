@@ -39,7 +39,7 @@ export default function CourseInfo() {
           title={location.state.title}
         />
       </Box>
-      <IncourseEvaluation />
+      <IncourseEvaluation course_pk={location.state.course_pk} />
       <FinalEvaluation />
     </Box>
   );

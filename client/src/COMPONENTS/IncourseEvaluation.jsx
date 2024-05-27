@@ -3,7 +3,7 @@ import React from "react";
 import TutorialInfoTable from "./TutorialInfoTable";
 import SubmitMarksButton from "./SubmitMarksButton";
 
-export default function IncourseEvaluation() {
+export default function IncourseEvaluation(course_pk) {
   return (
     <Box
       sx={{
@@ -16,10 +16,10 @@ export default function IncourseEvaluation() {
       }}
     >
       <Typography variant="h5" sx={{ textAlign: "left" }} gutterBottom>
-        Incourse Evaluation
+        Continuous Internal Evaluation
       </Typography>
       <Box sx={{ width: "100%" }}>
-        <TutorialInfoTable />
+        <TutorialInfoTable course_pk={course_pk} />
         <SubmitMarksButton type="Incourse" />
       </Box>
     </Box>
