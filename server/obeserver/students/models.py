@@ -10,7 +10,7 @@ class Student(models.Model):
   phone_no=models.CharField(max_length=20)
   email=models.CharField(max_length=50)
   def __str__(self) -> str:
-    return self.student_id+": "+self.name
+    return str(self.student_id)+": "+self.name
   def __iter__(self):
     yield self.student_id
     yield self.exam_roll

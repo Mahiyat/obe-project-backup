@@ -3,6 +3,8 @@ import { Box, Card, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
 import ViewCoursesRowActions from "./ViewCoursesRowActions";
+import PendingCourses from "./PendingCourses";
+import CompletedCourses from "./CompletedCourses";
 
 
 
@@ -91,76 +93,8 @@ export default function ViewCourses() {
       >
         Courses
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          paddingY: "16px",
-          gap: "16px",
-        }}
-      >
-        <Typography variant="h5" gutterBottom>
-          Active Courses
-        </Typography>
-
-        <Box sx={{
-          width: "100%",
-        }}>
-
-          <DataGrid
-
-            rows={rows}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 3,
-                },
-              },
-            }}
-            pageSizeOptions={[3]}
-            // checkboxSelection
-            disableRowSelectionOnClick
-          //autosizeOptions={expand}
-          />
-        </Box>
-
-
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          paddingY: "16px",
-          gap: "16px",
-        }}
-      >
-        <Typography variant="h5" gutterBottom>
-          Completed Courses
-        </Typography>
-        <Box sx={{
-          width: "100%",
-        }}>
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 3,
-                },
-              },
-            }}
-            pageSizeOptions={[3]}
-            // checkboxSelection
-            disableRowSelectionOnClick
-          />
-
-        </Box>
-
-      </Box>
+      <PendingCourses />
+      <CompletedCourses />
     </Box>
   );
 }
