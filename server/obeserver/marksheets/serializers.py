@@ -7,6 +7,7 @@ class SEEMarksheetSerializer(serializers.ModelSerializer):
     class Meta:
         model = SEEMarksheet
         fields = (
+            "id",
             "course_pk",
             "exam_roll",
             "clo1",
@@ -28,6 +29,7 @@ class CIEMarksheetSerializer(serializers.ModelSerializer):
     class Meta:
         model = CIEMarksheet
         fields = (
+            "id",
             "course_pk",
             "student_id",
             "tutorial",
