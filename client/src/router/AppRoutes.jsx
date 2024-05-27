@@ -4,7 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Dashboard from "../COMPONENTS/Dashboard";
 import CourseInfo from "../COMPONENTS/CourseInfo";
-import TutorialMarkSheet from "../COMPONENTS/TutorialMarkSheet";
+import CIECategoryMarkSheet from "../COMPONENTS/CIECategoryMarkSheet";
 import ViewCourses from "../COMPONENTS/ViewCourses";
 import SubmitRequest from "../COMPONENTS/SubmitRequest";
 import ResultStatistics from "../COMPONENTS/ResultStatistics";
@@ -22,8 +22,8 @@ export default function AppRoutes() {
           element: <CourseInfo />,
         },
         {
-          path: "tutorial-marks",
-          element: <TutorialMarkSheet authed={true} />,
+          path: "cie-category-marks",
+          element: <CIECategoryMarkSheet authed={true} />,
         },
         {
           path: "view-courses",
