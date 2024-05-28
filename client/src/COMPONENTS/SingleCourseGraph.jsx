@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import {
   BarPlot,
   ChartContainer,
@@ -12,6 +12,7 @@ import {
 import GraphTabs from './GraphTabs';
 import { API_URL_SEE_MARKSHEET } from '../constants';
 import axios from 'axios';
+import GenerateCLOReport from './GenerateCLOReport';
 
 export default function SingleCourseGraph({
   course,
@@ -21,6 +22,8 @@ export default function SingleCourseGraph({
   id,
   type,
 }) {
+  const [showReport, setShowReport] = React.useState(false);
+
   const onItemClick = (event, data) => {
     console.log(event, data);
     const clickedIndex = data.dataIndex; // get the index of the clicked bar
@@ -31,7 +34,7 @@ export default function SingleCourseGraph({
 
   console.log(selectedCO);
 
-  const [stats, setStats] = useState([])
+  const [stats, setStats] = useState([]);
   useEffect(() => {
     fetchData();
   }, [id]);
@@ -46,8 +49,7 @@ export default function SingleCourseGraph({
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-  }
-
+  };
 
   const valueFormatter = (value) => `${value}%`;
 
@@ -57,7 +59,13 @@ export default function SingleCourseGraph({
       stack: '',
       yAxisKey: 'general',
       color: '#42a5f5',
-      data: [stats['clo1'], stats['clo2'], stats['clo3'], stats['clo4'], stats['clo5']],
+      data: [
+        stats['clo1'],
+        stats['clo2'],
+        stats['clo3'],
+        stats['clo4'],
+        stats['clo5'],
+      ],
       highlightScope: {
         highlighted: 'item',
       },
@@ -78,49 +86,65 @@ export default function SingleCourseGraph({
       sx={{
         position: 'relative',
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
       <Box
         sx={{
+          position: 'relative',
           display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <ChartContainer
-          series={series}
-          width={800}
-          height={400}
-          xAxis={[
-            {
-              id: 'courseOutcome',
-              data: ['CLO1', 'CLO2', 'CLO3', 'CLO4', 'CLO5'],
-              scaleType: 'band',
-            },
-          ]}
-          yAxis={[
-            { id: 'general', scaleType: 'linear' },
-            { id: 'general', scaleType: 'linear' },
-          ]}
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
         >
-          <BarPlot onItemClick={onItemClick} />
-          <LinePlot />
-          <ChartsXAxis
-            label="Course Outcome"
-            position="bottom"
-            axisId="courseOutcome"
-          />
-          <ChartsYAxis label="Attainment" position="left" axisId="general" />
-          <ChartsTooltip />
-          {/* <ChartsYAxis label="Threshold" position="right" axisId="threshold" /> */}
-        </ChartContainer>
-        <Typography variant="body1" gutterBottom>
-          {`Figure: ${exam} ${course}`}
-        </Typography>
+          <ChartContainer
+            series={series}
+            width={800}
+            height={400}
+            xAxis={[
+              {
+                id: 'courseOutcome',
+                data: ['CLO1', 'CLO2', 'CLO3', 'CLO4', 'CLO5'],
+                scaleType: 'band',
+              },
+            ]}
+            yAxis={[
+              { id: 'general', scaleType: 'linear' },
+              { id: 'general', scaleType: 'linear' },
+            ]}
+          >
+            <BarPlot onItemClick={onItemClick} />
+            <LinePlot />
+            <ChartsXAxis
+              label="Course Outcome"
+              position="bottom"
+              axisId="courseOutcome"
+            />
+            <ChartsYAxis label="Attainment" position="left" axisId="general" />
+            <ChartsTooltip />
+            {/* <ChartsYAxis label="Threshold" position="right" axisId="threshold" /> */}
+          </ChartContainer>
+          <Typography variant="body1" gutterBottom>
+            {`Figure: ${exam} ${course}`}
+          </Typography>
+        </Box>
+        {selectedCO !== '' && (
+          <GraphTabs labelType={selectedCO} id={id} type={type} />
+        )}
       </Box>
-      {selectedCO !== '' && <GraphTabs labelType={selectedCO} id={id} type={type} />}
+      <Button sx={{ paddingY: '24px' }} onClick={() => setShowReport(true)}>
+        Show Comments
+      </Button>
+      {showReport && <GenerateCLOReport course={course} exam={exam} type={type} stats={stats} />}
     </Box>
   );
 }

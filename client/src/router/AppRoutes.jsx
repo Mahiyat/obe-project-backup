@@ -10,6 +10,7 @@ import SubmitRequest from "../COMPONENTS/SubmitRequest";
 import ResultStatistics from "../COMPONENTS/ResultStatistics";
 import FinalEvaluationSheet from "../COMPONENTS/FinalEvaluationSheet";
 import ViewCIEMarksheet from "../COMPONENTS/ViewCIEMarksheet";
+import GraphTabsReport from "../COMPONENTS/GraphTabsReport";
 
 export default function AppRoutes() {
   const routes = createBrowserRouter([
@@ -45,6 +46,10 @@ export default function AppRoutes() {
         {
           path: "view-cie-marksheet",
           element: <ViewCIEMarksheet />
+        },
+        {
+          path: "graph-tabs-report",
+          element: <GraphTabsReport />
         },
       ],
     },

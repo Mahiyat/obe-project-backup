@@ -11,6 +11,8 @@ import PieChart from './PieChart';
 import { API_URL_CIE_MARKSHEET, API_URL_SEE_MARKSHEET } from '../constants';
 import axios from 'axios';
 import GraphTabsReport from './GraphTabsReport';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 // import { Paper, Typography } from '@mui/material';
 
 function CustomTabPanel(props) {
@@ -24,9 +26,7 @@ function CustomTabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        children
-      )}
+      {value === index && children}
     </div>
   );
 }
@@ -44,9 +44,10 @@ function a11yProps(index) {
   };
 }
 
-export default function GraphTabs({labelType, id, type}) {
+export default function GraphTabs({ labelType, id, type }) {
   console.log(id);
   const [counts, setCounts] = React.useState([]);
+  const [showReport, setShowReport] = React.useState(false);
   React.useEffect(() => {
     fetchData();
   }, [labelType]);
@@ -71,11 +72,21 @@ export default function GraphTabs({labelType, id, type}) {
   };
 
   return (
-    <Box sx={{width: '100%'}}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider', alignContent:'center' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+    <Box sx={{ width: '100%' }}>
+      <Box
+        sx={{ borderBottom: 1, borderColor: 'divider', alignContent: 'center' }}
+      >
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+        >
           <Tab icon={<PieChartIcon />} label="Pie Chart" {...a11yProps(0)} />
-          <Tab icon={<StackedBarChartIcon />} label="Stacked Bar Chart" {...a11yProps(1)} />
+          <Tab
+            icon={<StackedBarChartIcon />}
+            label="Stacked Bar Chart"
+            {...a11yProps(1)}
+          />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
@@ -85,6 +96,12 @@ export default function GraphTabs({labelType, id, type}) {
         <StackGraph labelType={labelType} counts={counts} />
       </CustomTabPanel>
       {/* <GraphTabsReport counts={counts} labelType={labelType} /> */}
+      {type === 'Continuous Internal Evaluation' && (
+        <Button sx={{ paddingY: '24px' }} onClick={() => setShowReport(true)}>
+          Show Comments
+        </Button>
+      )}
+      {showReport && <GraphTabsReport counts={counts} labelType={labelType} />}
     </Box>
   );
 }
