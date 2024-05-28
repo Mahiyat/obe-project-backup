@@ -15,6 +15,8 @@ export default function CourseTypeSelection(props) {
     handleSemesterEndCourseSelection,
     semesterEndCourse,
     handleSemesterEndCourse,
+    semesterEndExamTitle,
+    handleSemesterEndExamTitle,
     selectedCO,
     handleSelectedCO,
   } = props;
@@ -66,6 +68,8 @@ export default function CourseTypeSelection(props) {
           handleSemesterEndCourse={handleSemesterEndCourse}
           selectedCO={selectedCO}
           handleSelectedCO={handleSelectedCO}
+          semesterEndExamTitle={semesterEndExamTitle}
+          handleSemesterEndExamTitle={handleSemesterEndExamTitle}
         />
       )}
     </Box>
