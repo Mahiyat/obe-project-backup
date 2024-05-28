@@ -16,7 +16,8 @@ export default function ResultStatistics() {
   const [semesterEndCourse, setSemesterEndCourse] = React.useState('');
   const [semesterEndExamTitle, setSemesterEndExamTitle] = React.useState('');
   const [selectedCO, setSelectedCO] = React.useState('');
-  const [pk, setPk] = React.useState([])
+  const [pk, setPk] = React.useState([]);
+  
 
   const handleEvaluationTypeChange = (event) => {
     setType(event.target.value);

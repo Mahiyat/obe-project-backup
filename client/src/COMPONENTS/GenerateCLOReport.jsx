@@ -1,19 +1,18 @@
-import { Paper, Typography, CircularProgress } from '@mui/material';
-import axios from 'axios';
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { MuiMarkdown } from 'mui-markdown';
+import { CircularProgress, Paper, Typography } from '@mui/material';
+import MuiMarkdown from 'mui-markdown';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-export default function GraphTabsReport({ counts, labelType }) {
+export default function GenerateCLOReport({ course, exam, type, stats }) {
+  console.log(stats);
   const performance = useMemo(
     () => [
-      counts['80_100'],
-      counts['70_79'],
-      counts['60_69'],
-      counts['50_59'],
-      counts['40_49'],
-      counts['0_39'],
+      stats['clo1'],
+      stats['clo2'],
+      stats['clo3'],
+      stats['clo4'],
+      stats['clo5'],
     ],
-    [counts]
+    [stats]
   );
 
   const [report, setReport] = useState('');
@@ -26,7 +25,7 @@ export default function GraphTabsReport({ counts, labelType }) {
     const api = 'http://localhost:11434/api/generate';
     const payload = {
       model: 'llama3',
-      prompt: `Comment on the data ${performance} which is the overall performance of 54 students in the ranges 80%-100%, 70%-79%, 60%-69%, 50%-59%, 40%-49%, and less than 40% respectively in a course in ${labelType} exam. Also give your opinion of any improvements if needed.`,
+      prompt: `Comment on the data ${performance} which is the overall performance of 54 students in ${type} in the CLOs (Course Learning Outcomes) CLO1 (Remember), CLO2 (Understand), CLO3 (Apply), CLO4 (Analyze), and CLO5 (Evaluate) respectively, and less than 40% respectively in a course with course code ${course} and exam title ${exam}. Also give your opinion of any improvements if needed.`,
       stream: false,
       options: {
         temperature: 1,
@@ -54,14 +53,16 @@ export default function GraphTabsReport({ counts, labelType }) {
     } finally {
       setLoading(false);
     }
-  }, [performance, labelType]);
+  }, [performance, course, exam, type]);
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
+  console.log(report);
+
   return (
-    <Paper sx={{ paddingY: '24px' }}>
+    <Paper sx={{ paddingY: '24px' }} elevation={8}>
       {loading ? (
         <CircularProgress />
       ) : error ? (
