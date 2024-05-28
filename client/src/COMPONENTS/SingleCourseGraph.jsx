@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import {
   BarPlot,
@@ -10,36 +10,16 @@ import {
 } from '@mui/x-charts';
 
 import GraphTabs from './GraphTabs';
-
-const valueFormatter = (value) => `${value}%`;
-
-const series = [
-  {
-    type: 'bar',
-    stack: '',
-    yAxisKey: 'general',
-    color: '#42a5f5',
-    data: [80, 75, 70, 60, 65],
-    highlightScope: {
-      highlighted: 'item',
-    },
-    valueFormatter,
-  },
-  {
-    type: 'line',
-    yAxisKey: 'general',
-    color: '#f44336',
-    label: 'Target',
-    data: [60, 60, 60, 60, 60],
-    valueFormatter,
-  },
-];
+import { API_URL_SEE_MARKSHEET } from '../constants';
+import axios from 'axios';
 
 export default function SingleCourseGraph({
   course,
   exam,
   selectedCO,
   handleSelectedCO,
+  id,
+  type,
 }) {
   const onItemClick = (event, data) => {
     console.log(event, data);
@@ -50,6 +30,48 @@ export default function SingleCourseGraph({
   };
 
   console.log(selectedCO);
+
+  const [stats, setStats] = useState([])
+  useEffect(() => {
+    fetchData();
+  }, [id]);
+
+  const fetchData = async () => {
+    const api = `${API_URL_SEE_MARKSHEET}stats/${id}`;
+    await axios
+      .get(api)
+      .then((response) => {
+        setStats(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }
+
+
+  const valueFormatter = (value) => `${value}%`;
+
+  const series = [
+    {
+      type: 'bar',
+      stack: '',
+      yAxisKey: 'general',
+      color: '#42a5f5',
+      data: [stats['clo1'], stats['clo2'], stats['clo3'], stats['clo4'], stats['clo5']],
+      highlightScope: {
+        highlighted: 'item',
+      },
+      valueFormatter,
+    },
+    {
+      type: 'line',
+      yAxisKey: 'general',
+      color: '#f44336',
+      label: 'Target',
+      data: [60, 60, 60, 60, 60],
+      valueFormatter,
+    },
+  ];
 
   return (
     <Box
@@ -98,7 +120,7 @@ export default function SingleCourseGraph({
           {`Figure: ${exam} ${course}`}
         </Typography>
       </Box>
-      {selectedCO !== '' && <GraphTabs labelType={selectedCO} />}
+      {selectedCO !== '' && <GraphTabs labelType={selectedCO} id={id} type={type} />}
     </Box>
   );
 }

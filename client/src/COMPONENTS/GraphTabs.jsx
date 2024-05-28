@@ -8,6 +8,10 @@ import StackedBarChartIcon from '@mui/icons-material/StackedBarChart';
 
 import StackGraph from './StackGraph';
 import PieChart from './PieChart';
+import { API_URL_CIE_MARKSHEET, API_URL_SEE_MARKSHEET } from '../constants';
+import axios from 'axios';
+import GraphTabsReport from './GraphTabsReport';
+// import { Paper, Typography } from '@mui/material';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -40,7 +44,26 @@ function a11yProps(index) {
   };
 }
 
-export default function GraphTabs({labelType}) {
+export default function GraphTabs({labelType, id, type}) {
+  console.log(id);
+  const [counts, setCounts] = React.useState([]);
+  React.useEffect(() => {
+    fetchData();
+  }, [labelType]);
+  const fetchData = async () => {
+    const api =
+      type === 'Continuous Internal Evaluation'
+        ? `${API_URL_CIE_MARKSHEET}${id}/${labelType.toLowerCase()}`
+        : `${API_URL_SEE_MARKSHEET}${id}/${labelType.toLowerCase()}`;
+    await axios
+      .get(api)
+      .then((response) => {
+        setCounts(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  };
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -56,11 +79,12 @@ export default function GraphTabs({labelType}) {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <PieChart labelType={labelType} />
+        <PieChart labelType={labelType} counts={counts} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <StackGraph labelType={labelType} />
+        <StackGraph labelType={labelType} counts={counts} />
       </CustomTabPanel>
+      {/* <GraphTabsReport counts={counts} labelType={labelType} /> */}
     </Box>
   );
 }

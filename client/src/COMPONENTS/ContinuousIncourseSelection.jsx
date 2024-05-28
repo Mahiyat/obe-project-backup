@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 import ContinuousIncourseMenu from './ContinuousIncourseMenu';
+import { API_URL_COURSE } from '../constants';
+import axios from 'axios';
 
 export default function ContinuousIncourseSelection(props) {
   // const [course, setCourse] = React.useState('');
@@ -22,7 +24,64 @@ export default function ContinuousIncourseSelection(props) {
     handleExamTitleChange,
     incourseType,
     handleIncourseTypeChange,
+    pk,
+    setPk,
   } = props;
+
+  const [courses, setCourses] = useState([]);
+  useEffect(() => {
+    fetchCourseIdData();
+  }, []);
+  const fetchCourseIdData = async () => {
+    const api = API_URL_COURSE + 'courseids';
+    await axios
+      .get(api)
+      .then((response) => {
+        setCourses(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  };
+  // const examTitles = [
+  //   '1st Year 1st Semester 2021',
+  //   '1st Year 1st Semester 2020',
+  // ];
+
+  const [examTitles, setExamTitles] = useState([]);
+  useEffect(() => {
+    if (course) {
+      fetchExamTitleData(course);
+    }
+  }, [course]);
+  const fetchExamTitleData = async (courseId) => {
+    const api = `${API_URL_COURSE}titles/${courseId}`;
+    await axios
+      .get(api)
+      .then((response) => {
+        setExamTitles(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  };
+
+  useEffect(() => {
+    if(course!=='' && examTitle!==''){
+      fetchPkData(course, examTitle);
+    }
+  }, [course, examTitle]);
+  const fetchPkData = async (courseId, title) => {
+    const api = `${API_URL_COURSE}getpk/${courseId}/${title}`;
+    await axios
+      .get(api)
+      .then((response) => {
+        setPk(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }
 
   return (
     <Box
@@ -51,8 +110,11 @@ export default function ContinuousIncourseSelection(props) {
               label="Course"
               onChange={handleCourseChange}
             >
-              <MenuItem value={'CSE-105'}>CSE-105</MenuItem>
-              <MenuItem value={'CSE-107'}>CSE-107</MenuItem>
+              {courses.map((course) => (
+                <MenuItem key={course.course_id} value={course.course_id}>
+                  {course.course_id}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Box>
@@ -75,12 +137,11 @@ export default function ContinuousIncourseSelection(props) {
               label="Exam Title"
               onChange={handleExamTitleChange}
             >
-              <MenuItem value={'1st Year 1st Semester 2021'}>
-                1st Year 1st Semester 2021
-              </MenuItem>
-              <MenuItem value={'1st Year 1st Semester 2020'}>
-                1st Year 1st Semester 2020
-              </MenuItem>
+              {examTitles.map((title) => (
+                <MenuItem key={title.exam_title} value={title.exam_title}>
+                  {title.exam_title}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Box>

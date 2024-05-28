@@ -16,6 +16,7 @@ export default function ResultStatistics() {
   const [semesterEndCourse, setSemesterEndCourse] = React.useState('');
   const [semesterEndExamTitle, setSemesterEndExamTitle] = React.useState('');
   const [selectedCO, setSelectedCO] = React.useState('');
+  const [pk, setPk] = React.useState([])
 
   const handleEvaluationTypeChange = (event) => {
     setType(event.target.value);
@@ -54,11 +55,13 @@ export default function ResultStatistics() {
       setIncourseType('');
       setCourse('');
       setExamTitle('');
+      setPk([]);
     } else if (type === 'Continuous Internal Evaluation') {
       setSemesterEndCourseSelection('');
       setSemesterEndCourse('');
       setSemesterEndExamTitle('');
       setSelectedCO('');
+      setPk([]);
     }
   }, [type]);
 
@@ -110,10 +113,12 @@ export default function ResultStatistics() {
           handleSemesterEndExamTitle={handleSemesterEndExamTitle}
           selectedCO={selectedCO}
           handleSelectedCO={handleSelectedCO}
+          pk={pk}
+          setPk={setPk}
         />
-        {incourseType !== '' && <GraphTabs labelType={incourseType} />}
+        {incourseType !== '' && <GraphTabs labelType={incourseType} id={pk.id} type={type} />}
         {semesterEndCourseSelection === 'All Courses' && (
-          <AllCourseGraph semesterEndExamTitle={semesterEndExamTitle} />
+          <AllCourseGraph />
         )}
         {semesterEndCourse !== '' && semesterEndExamTitle !== '' && (
           <SingleCourseGraph
@@ -121,6 +126,8 @@ export default function ResultStatistics() {
             exam={semesterEndExamTitle}
             selectedCO={selectedCO}
             handleSelectedCO={handleSelectedCO}
+            id={pk.id}
+            type={type}
           />
         )}
       </Stack>

@@ -8,67 +8,52 @@ import {
   LinePlot,
 } from '@mui/x-charts';
 import { ChartsLegend } from '@mui/x-charts/ChartsLegend';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { API_URL_SEE_MARKSHEET } from '../constants';
+import axios from 'axios';
 
-const valueFormatter = (value) => `${value}%`;
+export default function AllCourseGraph() {
+  const [courseData, setCourseData] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-const co1 = [80, 75];
-const co2 = [75, 75];
-const co3 = [70, 65];
-const co4 = [65, 60];
-const co5 = [60, 55];
+  const fetchData = async () => {
+    const api = API_URL_SEE_MARKSHEET + 'allcourses';
+    try {
+      const response = await axios.get(api);
+      const data = response.data;
+      if (data && typeof data === 'object') {
+        const formattedData = Object.keys(data).map((key) => ({
+          label: data[key].label,
+          data: [
+            data[key].clo1 || 0,
+            data[key].clo2 || 0,
+            data[key].clo3 || 0,
+            data[key].clo4 || 0,
+            data[key].clo5 || 0,
+          ],
+        }));
+        setCourseData(formattedData);
+      } else {
+        console.error('Unexpected data format:', data);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
-const series = [
-  {
+  const valueFormatter = (value) => `${value}%`;
+
+  const series = courseData.map((course) => ({
     type: 'bar',
     yAxisKey: 'general',
-    label: 'CSE-105',
-    data: [80, 75, 70, 65, 60],
+    label: course.label,
+    data: course.data,
     stack: 'A',
-    valueFormatter,
-  },
-  {
-    type: 'bar',
-    yAxisKey: 'general',
-    label: 'CSE-107',
-    data: [75, 75, 65, 60, 55],
-    stack: 'A',
-    valueFormatter,
-  },
-  {
-    type: "bar",
-    yAxisKey: "general",
-    label: "CSE-101",
-    data: [70, 80, 70, 60, 60],
-    stack: 'A',
-    valueFormatter,
-  },
-  // {
-  //   type: "bar",
-  //   yAxisKey: "general",
-  //   label: "CO4",
-  //   data: co4,
-  //   valueFormatter,
-  // },
-  // {
-  //   type: "bar",
-  //   yAxisKey: "general",
-  //   label: "CO5",
-  //   data: co5,
-  //   valueFormatter,
-  // },
-  // {
-  //   type: 'line',
-  //   yAxisKey: 'general',
-  //   color: '#f44336',
-  //   label: 'Target',
-  //   data: [60, 60, 60, 60, 60],
-  //   valueFormatter,
-  // },
-];
+    valueFormatter: valueFormatter,
+  }));
 
-export default function AllCourseGraph({semesterEndExamTitle}) {
-  console.log(semesterEndExamTitle);
   return (
     <Box sx={{ position: 'relative' }}>
       <Box
@@ -107,7 +92,7 @@ export default function AllCourseGraph({semesterEndExamTitle}) {
         </ChartContainer>
       </Box>
       <Typography variant="body1" gutterBottom>
-        {`Figure: All Courses of ${semesterEndExamTitle}`}
+        Figure: All Courses
       </Typography>
     </Box>
   );
