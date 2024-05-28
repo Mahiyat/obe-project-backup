@@ -108,3 +108,13 @@ def get_pk(request, c_id, e_title):
     except Course.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     return Response({'id': course.id})
+
+@api_view(["GET"])
+def get_count(request):
+    courses_count = Course.objects.count()
+    pending_courses_count = Course.objects.filter(completed_status=False).count()
+    counts={
+        'all_courses_count': courses_count,
+        'pending_courses_count': pending_courses_count
+    }
+    return Response(counts)

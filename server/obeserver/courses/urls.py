@@ -13,4 +13,5 @@ urlpatterns = [
     re_path(
         r"getpk/(?P<c_id>[\w-]+)/(?P<e_title>[\w\s-]+)$", views.get_pk, name="get_pk"
     ),
+    re_path("getcounts$", views.get_count, name="get_count"),
 ]
