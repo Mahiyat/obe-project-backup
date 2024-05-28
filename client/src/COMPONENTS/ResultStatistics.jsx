@@ -112,7 +112,7 @@ export default function ResultStatistics() {
           handleSelectedCO={handleSelectedCO}
         />
         {incourseType !== '' && <GraphTabs labelType={incourseType} />}
-        {semesterEndCourseSelection === 'All Courses' && semesterEndExamTitle !== '' && (
+        {semesterEndCourseSelection === 'All Courses' && (
           <AllCourseGraph semesterEndExamTitle={semesterEndExamTitle} />
         )}
         {semesterEndCourse !== '' && semesterEndExamTitle !== '' && (

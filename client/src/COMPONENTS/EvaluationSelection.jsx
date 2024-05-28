@@ -3,6 +3,7 @@ import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 import ExamSelection from './ExamSelection';
 import ContinuousIncourseSelection from './ContinuousIncourseSelection';
+import CourseTypeSelection from './CourseTypeSelection';
 
 export default function EvaluationSelection(props) {
   // const [type, setType] = React.useState('');
@@ -70,7 +71,7 @@ export default function EvaluationSelection(props) {
       </Box>
 
       {type === 'Semester End Examination' ? (
-        <ExamSelection
+        <CourseTypeSelection
           semesterEndCourseSelection={semesterEndCourseSelection}
           handleSemesterEndCourseSelection={handleSemesterEndCourseSelection}
           semesterEndCourse={semesterEndCourse}
