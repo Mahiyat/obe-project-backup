@@ -20,7 +20,7 @@ export default function IncourseEvaluation(course_pk) {
       </Typography>
       <Box sx={{ width: "100%" }}>
         <TutorialInfoTable course_pk={course_pk} />
-        <SubmitMarksButton type="Incourse" />
+        <SubmitMarksButton type="CIE" course_pk={course_pk} />
       </Box>
     </Box>
   );

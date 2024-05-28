@@ -10,6 +10,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 import {
   API_URL_BUTTON,
+  API_URL_CIE_MARKSHEET,
   API_URL_COURSE,
   API_URL_SEE_MARKSHEET,
 } from '../constants';
@@ -28,7 +29,9 @@ export default function EditCourseToolBar(props) {
       const id = newRecord.id;
       const api = `${API_URL_SEE_MARKSHEET}create/${id}`;
       const buttonsAPI = API_URL_BUTTON;
+      const cieAPI = `${API_URL_CIE_MARKSHEET}create/${id}`;
       await axios.post(api);
+      await axios.post(cieAPI);
       await axios.post(buttonsAPI, {
         course_pk: id,
         type: 'CIE',

@@ -223,13 +223,15 @@ export default function CIECategoryMarkSheet() {
               Marks Saved!
             </Alert>
           ) : (
-            <Alert
-              onClose={handleClose}
-              severity="error"
-              sx={{ width: '100%' }}
-            >
-              Something Went Wrong:!
-            </Alert>
+            status === 'not okay' && (
+              <Alert
+                onClose={handleClose}
+                severity="error"
+                sx={{ width: '100%' }}
+              >
+                Something Went Wrong:!
+              </Alert>
+            )
           )}
         </Snackbar>
       </Box>

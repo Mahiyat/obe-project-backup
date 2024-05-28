@@ -28,10 +28,13 @@ def show(request, c_pk):
 @api_view(['PUT'])
 def update(request, c_pk, type):
   try:
-    button=Button.objects.filter(course_pk=c_pk, type=type)
+    button=Button.objects.get(course_pk=c_pk, type=type)
   except Button.DoesNotExist:
     return Response(status=status.HTTP_404_NOT_FOUND)
-  serializer=ButtonSerializer(button, data=request.data, context={'request': request})
+  data = request.data.copy()
+  data['course_pk'] = c_pk
+  data['type'] = type
+  serializer=ButtonSerializer(button, data=data, context={'request': request})
   if serializer.is_valid():
     serializer.save()
     return Response(status=status.HTTP_204_NO_CONTENT)

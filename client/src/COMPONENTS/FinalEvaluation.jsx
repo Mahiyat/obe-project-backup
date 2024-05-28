@@ -25,7 +25,7 @@ export default function FinalEvaluation(course_pk) {
             here
           </Link>
         </Typography>
-        <SubmitMarksButton type="Final" />
+        <SubmitMarksButton type="SEE" course_pk={course_pk} />
       </Box>
     </Box>
   );
