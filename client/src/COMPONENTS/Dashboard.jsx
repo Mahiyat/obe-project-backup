@@ -1,28 +1,44 @@
-import React, { useState } from "react";
-import { Box, Typography } from "@mui/material";
+import React, { useEffect, useState } from 'react';
+import { Box, Typography } from '@mui/material';
 
-import Card from "./Card";
-import Card1 from "./Card1";
-import Welcome from "./Welcome";
-import RecentActivity from "./RecentActivity";
+import Card from './Card';
+import Card1 from './Card1';
+import Welcome from './Welcome';
+import RecentActivity from './RecentActivity';
+import { API_URL_COURSE } from '../constants';
+import axios from 'axios';
 
 export default function Dashboard() {
-  const [counts, setCounts] = useState([])
+  const [counts, setCounts] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    const api = API_URL_COURSE + 'getcounts';
+    await axios
+      .get(api)
+      .then((response) => {
+        setCounts(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  };
   return (
     <Box
       component="main"
       sx={{
         flexGrow: 1,
-        bgcolor: "background.default",
+        bgcolor: 'background.default',
         p: 3,
-        position: "relative",
+        position: 'relative',
       }}
     >
       <Typography
         variant="h3"
         sx={{
-          textAlign: "left",
-          textDecoration: "underline #3d5afe",
+          textAlign: 'left',
+          textDecoration: 'underline #3d5afe',
         }}
         gutterBottom
       >
@@ -31,12 +47,12 @@ export default function Dashboard() {
       <Welcome />
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "32px",
-          padding: "32px 32px",
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '32px',
+          padding: '32px 32px',
         }}
       >
         {/* <Card
@@ -68,8 +84,11 @@ export default function Dashboard() {
           </Typography>
           <Typography variant="h3">2</Typography>
         </Card> */}
-        <Card cardDesc="Total Courses" cardNum="4" />
-        <Card1 cardDesc="Marks Submission Remaining" cardNum="2" />
+        <Card cardDesc="Total Courses" cardNum={counts.all_courses_count} />
+        <Card1
+          cardDesc="Marks Submission Remaining"
+          cardNum={counts.pending_courses_count}
+        />
       </Box>
       <RecentActivity />
     </Box>
