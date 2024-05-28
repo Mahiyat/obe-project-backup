@@ -14,6 +14,7 @@ from .serializers import (
 from students.models import Student
 from students.serializers import StudentSerializer
 from cie.models import CIE
+from courses.models import Course
 
 # Create your views here.
 
@@ -182,3 +183,106 @@ def cie_create(request, c_pk):
     return Response(
         {"message": "Marksheet created successfully."}, status=status.HTTP_201_CREATED
     )
+
+
+# Result Statistics
+@api_view(["GET"])
+def get_cie_stats(request, c_pk, assessment_type):
+    marksheet = CIEMarksheet.objects.filter(course_pk=c_pk).values_list(
+        assessment_type, flat=True
+    )
+    ranges = [
+        (80, 100),
+        (70, 79),
+        (60, 69),
+        (50, 59),
+        (40, 49),
+        (0, 39),
+    ]
+    counts = {"80_100": 0, "70_79": 0, "60_69": 0, "50_59": 0, "40_49": 0, "0_39": 0}
+    full_marks = {"tutorial": 20, "assignment": 10, "curricular": 5, "quiz": 5}.get(
+        assessment_type
+    )
+    min_marks = [round((lower / 100) * full_marks) for lower, _ in ranges]
+    max_marks = [round((upper / 100) * full_marks) for _, upper in ranges]
+    for i, (lower, upper) in enumerate(ranges):
+        for mark in marksheet:
+            if min_marks[i] <= mark <= max_marks[i]:
+                counts[f"{lower}_{upper}"] += 1
+    return Response(counts)
+
+
+@api_view(["GET"])
+def get_see_stats(request, c_pk):
+    marksheet = SEEMarksheet.objects.filter(course_pk=c_pk)
+    averages = marksheet.aggregate(
+        avg_clo1=Avg("clo1"),
+        avg_clo2=Avg("clo2"),
+        avg_clo3=Avg("clo3"),
+        avg_clo4=Avg("clo4"),
+        avg_clo5=Avg("clo5"),
+    )
+    percentage_clo1 = round(((averages['avg_clo1'] / 12) * 100),2) if averages['avg_clo1'] is not None else 0
+    percentage_clo2 = round(((averages['avg_clo2'] / 12) * 100),2) if averages['avg_clo2'] is not None else 0
+    percentage_clo3 = round(((averages['avg_clo3'] / 12) * 100),2) if averages['avg_clo3'] is not None else 0
+    percentage_clo4 = round(((averages['avg_clo4'] / 12) * 100),2) if averages['avg_clo4'] is not None else 0
+    percentage_clo5 = round(((averages['avg_clo5'] / 12) * 100),2) if averages['avg_clo5'] is not None else 0
+    stats = {
+        'clo1': percentage_clo1,
+        'clo2': percentage_clo2,
+        'clo3': percentage_clo3,
+        'clo4': percentage_clo4,
+        'clo5': percentage_clo5
+    }
+    return Response(stats)
+
+@api_view(["GET"])
+def get_clo_stats(request, c_pk, clo_type):
+    marksheet = SEEMarksheet.objects.filter(course_pk=c_pk).values_list(
+        clo_type, flat=True
+    )
+    ranges = [
+        (80, 100),
+        (70, 79),
+        (60, 69),
+        (50, 59),
+        (40, 49),
+        (0, 39),
+    ]
+    counts = {"80_100": 0, "70_79": 0, "60_69": 0, "50_59": 0, "40_49": 0, "0_39": 0}
+    min_marks = [round((lower / 100) * 12) for lower, _ in ranges]
+    max_marks = [round((upper / 100) * 12) for _, upper in ranges]
+    for i, (lower, upper) in enumerate(ranges):
+        for mark in marksheet:
+            if min_marks[i] <= mark <= max_marks[i]:
+                counts[f"{lower}_{upper}"] += 1
+    return Response(counts)
+
+@api_view(["GET"])
+def get_all_courses_see_stats(request):
+    courses = Course.objects.filter(completed_status=True)
+    overall = {}
+    for course in courses:
+        marksheet = SEEMarksheet.objects.filter(course_pk=course.pk)
+        averages = marksheet.aggregate(
+            avg_clo1=Avg("clo1"),
+            avg_clo2=Avg("clo2"),
+            avg_clo3=Avg("clo3"),
+            avg_clo4=Avg("clo4"),
+            avg_clo5=Avg("clo5"),
+        )
+        percentage_clo1 = round(((averages['avg_clo1'] / 12) * 100),2) if averages['avg_clo1'] is not None else 0
+        percentage_clo2 = round(((averages['avg_clo2'] / 12) * 100),2) if averages['avg_clo2'] is not None else 0
+        percentage_clo3 = round(((averages['avg_clo3'] / 12) * 100),2) if averages['avg_clo3'] is not None else 0
+        percentage_clo4 = round(((averages['avg_clo4'] / 12) * 100),2) if averages['avg_clo4'] is not None else 0
+        percentage_clo5 = round(((averages['avg_clo5'] / 12) * 100),2) if averages['avg_clo5'] is not None else 0
+        stats = {
+            'label': course.course_id,
+            'clo1': percentage_clo1,
+            'clo2': percentage_clo2,
+            'clo3': percentage_clo3,
+            'clo4': percentage_clo4,
+            'clo5': percentage_clo5
+        }
+        overall[course.course_id] = stats
+    return Response(overall)

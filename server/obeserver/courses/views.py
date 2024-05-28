@@ -57,7 +57,8 @@ def change_status(request, pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['GET'])
+
+@api_view(["GET"])
 def get_completed_courses(request):
     try:
         course = Course.objects.filter(completed_status=True)
@@ -66,7 +67,8 @@ def get_completed_courses(request):
     serializer = CourseSerializer(course, context={"request": request}, many=True)
     return Response(serializer.data)
 
-@api_view(['GET'])
+
+@api_view(["GET"])
 def get_pending_courses(request):
     try:
         course = Course.objects.filter(completed_status=False)
@@ -74,3 +76,35 @@ def get_pending_courses(request):
         return Response(status=status.HTTP_404_NOT_FOUND)
     serializer = CourseSerializer(course, context={"request": request}, many=True)
     return Response(serializer.data)
+
+
+@api_view(["GET"])
+def get_course_ids(request):
+    try:
+        courses = (
+            Course.objects.filter(completed_status=True).values("course_id").distinct()
+        )
+    except Course.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    return Response(courses)
+
+
+@api_view(["GET"])
+def get_titles(request, c_id):
+    try:
+        courses = (
+            Course.objects.filter(completed_status=True, course_id=c_id)
+            .values("exam_title")
+            .distinct()
+        )
+    except Course.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    return Response(courses)
+
+@api_view(["GET"])
+def get_pk(request, c_id, e_title):
+    try:
+        course = Course.objects.get(course_id=c_id, exam_title=e_title)
+    except Course.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    return Response({'id': course.id})

@@ -19,6 +19,7 @@ export default function CourseTypeSelection(props) {
     handleSemesterEndExamTitle,
     selectedCO,
     handleSelectedCO,
+    setPk,
   } = props;
 
   return (
@@ -70,6 +71,7 @@ export default function CourseTypeSelection(props) {
           handleSelectedCO={handleSelectedCO}
           semesterEndExamTitle={semesterEndExamTitle}
           handleSemesterEndExamTitle={handleSemesterEndExamTitle}
+          setPk={setPk}
         />
       )}
     </Box>

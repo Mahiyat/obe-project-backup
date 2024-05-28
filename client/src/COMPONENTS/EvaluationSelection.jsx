@@ -28,6 +28,8 @@ export default function EvaluationSelection(props) {
     handleSemesterEndExamTitle,
     selectedCO,
     handleSelectedCO,
+    pk,
+    setPk,
   } = props;
 
   return (
@@ -80,6 +82,7 @@ export default function EvaluationSelection(props) {
           handleSemesterEndExamTitle={handleSemesterEndExamTitle}
           selectedCO={selectedCO}
           handleSelectedCO={handleSelectedCO}
+          setPk={setPk}
         />
       ) : type === 'Continuous Internal Evaluation' ? (
         <ContinuousIncourseSelection
@@ -89,6 +92,8 @@ export default function EvaluationSelection(props) {
           handleExamTitleChange={handleExamTitleChange}
           incourseType={incourseType}
           handleIncourseTypeChange={handleIncourseTypeChange}
+          pk={pk}
+          setPk={setPk}
         />
       ) : null}
     </Box>
