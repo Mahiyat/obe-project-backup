@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
 
 import Card from "./Card";
@@ -7,6 +7,7 @@ import Welcome from "./Welcome";
 import RecentActivity from "./RecentActivity";
 
 export default function Dashboard() {
+  const [counts, setCounts] = useState([])
   return (
     <Box
       component="main"
