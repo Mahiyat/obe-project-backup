@@ -9,6 +9,7 @@ import ViewCourses from "../COMPONENTS/ViewCourses";
 import SubmitRequest from "../COMPONENTS/SubmitRequest";
 import ResultStatistics from "../COMPONENTS/ResultStatistics";
 import FinalEvaluationSheet from "../COMPONENTS/FinalEvaluationSheet";
+import ViewCIEMarksheet from "../COMPONENTS/ViewCIEMarksheet";
 
 export default function AppRoutes() {
   const routes = createBrowserRouter([
@@ -40,6 +41,10 @@ export default function AppRoutes() {
         {
           path: "final-evaluation-sheet",
           element: <FinalEvaluationSheet />,
+        },
+        {
+          path: "view-cie-marksheet",
+          element: <ViewCIEMarksheet />
         },
       ],
     },
