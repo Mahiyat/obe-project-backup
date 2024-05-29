@@ -26,10 +26,10 @@ export default function GraphTabsReport({ counts, labelType }) {
     const api = 'http://localhost:11434/api/generate';
     const payload = {
       model: 'llama3',
-      prompt: `Comment on the data ${performance} which is the overall performance of 54 students in the ranges 80%-100%, 70%-79%, 60%-69%, 50%-59%, 40%-49%, and less than 40% respectively in a course in ${labelType} exam. Also give your opinion of any improvements if needed.`,
+      prompt: `Comment on the data ${performance} which is the number of students among 54 students in the ranges 80%-100%, 70%-79%, 60%-69%, 50%-59%, 40%-49%, and less than 40% respectively in a course in ${labelType} exam. Also give your opinion of any improvements if needed.`,
       stream: false,
       options: {
-        temperature: 0.7,
+        temperature: 0.5,
       },
     };
 
