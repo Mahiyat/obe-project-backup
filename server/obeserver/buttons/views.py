@@ -5,7 +5,8 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 
 from .models import Button
-from .serializers import ButtonSerializer
+from .serializers import ButtonSerializer, ClassButtonSerializer
+from courses.models import Course
 
 # Create your views here.
 @api_view(['POST'])
@@ -38,4 +39,12 @@ def update(request, c_pk, type):
   if serializer.is_valid():
     serializer.save()
     return Response(status=status.HTTP_204_NO_CONTENT)
-  return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+  return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def get_incomplete_course_buttons(request):
+    incomplete_courses = Course.objects.filter(completed_status=False)
+    buttons = Button.objects.filter(course_pk__in=incomplete_courses, click_status=False)
+    serializer = ClassButtonSerializer(buttons, many=True)
+    return Response(serializer.data)
+
