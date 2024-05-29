@@ -28,7 +28,7 @@ export default function GenerateCLOReport({ course, exam, type, stats }) {
       prompt: `Comment on the data ${performance} which is the overall performance of 54 students in ${type} in the CLOs (Course Learning Outcomes) CLO1 (Remember), CLO2 (Understand), CLO3 (Apply), CLO4 (Analyze), and CLO5 (Evaluate) respectively, and less than 40% respectively in a course with course code ${course} and exam title ${exam}. Also give your opinion of any improvements if needed.`,
       stream: false,
       options: {
-        temperature: 1,
+        temperature: 0.7,
       },
     };
 

@@ -29,7 +29,7 @@ export default function GraphTabsReport({ counts, labelType }) {
       prompt: `Comment on the data ${performance} which is the overall performance of 54 students in the ranges 80%-100%, 70%-79%, 60%-69%, 50%-59%, 40%-49%, and less than 40% respectively in a course in ${labelType} exam. Also give your opinion of any improvements if needed.`,
       stream: false,
       options: {
-        temperature: 1,
+        temperature: 0.7,
       },
     };
 
