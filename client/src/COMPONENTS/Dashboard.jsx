@@ -7,6 +7,7 @@ import Welcome from './Welcome';
 import RecentActivity from './RecentActivity';
 import { API_URL_COURSE } from '../constants';
 import axios from 'axios';
+import DashboardDetails from './DashboardDetails';
 
 export default function Dashboard() {
   const [counts, setCounts] = useState([]);
@@ -90,7 +91,7 @@ export default function Dashboard() {
           cardNum={counts.pending_courses_count}
         />
       </Box>
-      <RecentActivity />
+      <DashboardDetails />
     </Box>
   );
 }
