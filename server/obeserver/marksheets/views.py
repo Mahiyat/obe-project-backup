@@ -203,8 +203,8 @@ def get_cie_stats(request, c_pk, assessment_type):
     full_marks = {"tutorial": 20, "assignment": 10, "curricular": 5, "quiz": 5}.get(
         assessment_type
     )
-    min_marks = [round((lower / 100) * full_marks) for lower, _ in ranges]
-    max_marks = [round((upper / 100) * full_marks) for _, upper in ranges]
+    min_marks = [round(((lower / 100) * full_marks),2) for lower, _ in ranges]
+    max_marks = [round(((upper / 100) * full_marks),2) for _, upper in ranges]
     for i, (lower, upper) in enumerate(ranges):
         for mark in marksheet:
             if min_marks[i] <= mark <= max_marks[i]:
@@ -250,8 +250,8 @@ def get_clo_stats(request, c_pk, clo_type):
         (0, 39),
     ]
     counts = {"80_100": 0, "70_79": 0, "60_69": 0, "50_59": 0, "40_49": 0, "0_39": 0}
-    min_marks = [round((lower / 100) * 12) for lower, _ in ranges]
-    max_marks = [round((upper / 100) * 12) for _, upper in ranges]
+    min_marks = [round(((lower / 100) * 12),2) for lower, _ in ranges]
+    max_marks = [round(((upper / 100) * 12),2) for _, upper in ranges]
     for i, (lower, upper) in enumerate(ranges):
         for mark in marksheet:
             if min_marks[i] <= mark <= max_marks[i]:
