@@ -5,22 +5,22 @@
 
 ### Without Using Docker
 #### Server
-> `cd server`
-> `source myenv/bin/activate`
-> `pip install django django-cors-headers djangorestframework`
-> `cd oberserver`
-> `python manage.py makemigration`
-> `python manage.py migrate`
-> `python manage.py runserver`
+> `cd server`<br>
+> `source myenv/bin/activate`<br>
+> `pip install django django-cors-headers djangorestframework`<br>
+> `cd oberserver`<br>
+> `python manage.py makemigration`<br>
+> `python manage.py migrate`<br>
+> `python manage.py runserver`<br>
 
 #### Client
 ##### Run in Development Mode
-> `cd client`
-> `npm start`
+> `cd client`<br>
+> `npm start`<br>
 
 ##### Build the App for Production
-> `cd client`
-> `npm run build`
-> `cd build`
-> `npx serve` 
+> `cd client`<br>
+> `npm run build`<br>
+> `cd build`<br>
+> `npx serve`<br>
 
