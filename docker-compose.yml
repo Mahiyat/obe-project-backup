@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  obe_client:
+    container_name: obe_client
+    build:
+      context: client
+      dockerfile: Dockerfile
+    depends_on:
+      - obe_server
+    ports:
+      - 3000:3000
+    restart: on-failure
+    volumes:
+      - ./client/src:/app/src
+
+  obe_server:
+    container_name: obe_server
+    build:
+      context: server
+      dockerfile: Dockerfile
+    command: bash -c "cd obeserver && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - 8000:8000
+    restart: on-failure
+    volumes:
+      - ./server/src:/app/src

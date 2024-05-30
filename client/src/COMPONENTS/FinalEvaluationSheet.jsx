@@ -59,7 +59,7 @@ export default function FinalEvaluationSheet() {
     { field: 'exam_roll', headerName: 'Exam Roll', width: 300 },
     {
       field: 'clo1',
-      headerName: 'CLO1',
+      headerName: 'CLO1 (out of 12)',
       type: 'number',
       width: 120,
       editable: true,
@@ -68,7 +68,7 @@ export default function FinalEvaluationSheet() {
     },
     {
       field: 'clo2',
-      headerName: 'CLO2',
+      headerName: 'CLO2 (out of 12)',
       type: 'number',
       width: 120,
       editable: true,
@@ -78,7 +78,7 @@ export default function FinalEvaluationSheet() {
 
     {
       field: 'clo3',
-      headerName: 'CLO3',
+      headerName: 'CLO3 (out of 12)',
       type: 'number',
       width: 120,
       editable: true,
@@ -87,7 +87,7 @@ export default function FinalEvaluationSheet() {
     },
     {
       field: 'clo4',
-      headerName: 'CLO4',
+      headerName: 'CLO4 (out of 12)',
       type: 'number',
       width: 120,
       editable: true,
@@ -96,7 +96,7 @@ export default function FinalEvaluationSheet() {
     },
     {
       field: 'clo5',
-      headerName: 'CLO5',
+      headerName: 'CLO5 (out of 12)',
       type: 'number',
       width: 120,
       editable: true,
@@ -105,7 +105,7 @@ export default function FinalEvaluationSheet() {
     },
     {
       field: 'marks_obtained',
-      headerName: 'Total Marks',
+      headerName: 'Total Marks  (out of 60)',
       type: 'number',
       width: 120,
       align: 'center',
@@ -168,7 +168,7 @@ export default function FinalEvaluationSheet() {
         }}
         gutterBottom
       >
-        Final Evaluation Sheet
+        Semester End Examination Sheet
       </Typography>
 
       <Box>
