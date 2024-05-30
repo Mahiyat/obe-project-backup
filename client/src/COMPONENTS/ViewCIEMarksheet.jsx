@@ -87,7 +87,7 @@ export default function ViewCIEMarksheet() {
         }}
         gutterBottom
       >
-        Course Internal Evaluation Sheet
+        Continuous Internal Evaluation Sheet
       </Typography>
       <Box>
         <DataGrid

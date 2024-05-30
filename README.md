@@ -24,3 +24,5 @@
 > `cd build`<br>
 > `npx serve`<br>
 
+Note that this project has an AI feature (Add comments button in the result statistics enables the feature). Locally setup ollama and pull llama3 model for using this feature.
+
